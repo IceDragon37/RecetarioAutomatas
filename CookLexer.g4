@@ -30,10 +30,9 @@ ENDWAIT		: 'RETOMAR';
 ELIF	: 'SINO_SI';
 
 
-
 MEDICION 		     : 'ONZ' | 'gr.' | 'cc.' | 'tbsp' ;
 CONDIMENTO_TYPE	 : 'CONDIMENTOS'					        ;
-VAR				       : 'INGREDIENTE'					        ;
+DECLARACION			 : 'INGREDIENTE'					        ;
 CARNE_TYPE 		   : 'CARNE'						            ;
 VEGETAL_TYPE 	   : 'VEGETAL'					       	    ;
 LEGUMBRE_TYPE 	 : 'LEGUMBRE'					            ;
@@ -43,6 +42,7 @@ RECIPIENTE_TYPE  : 'RECIPIENTE'					          ;
 CORTE_TYPE		   : 'CORTE'						            ;
 MEDIDAS_TIEMPO	 : 'HRS' | 'S' | 'MIN'| 'DIAS'	  ;
 APARATO_TYPE	   : 'APARATO'						          ;
+PORCION_TYPE		 : 'PERSONA' | 'PERSONAS'					;
 
 ESCRIBIR 	: 'ANOTAR'	  ;
 LEER 		  : 'INGRESE'	  ;

@@ -3,8 +3,27 @@ grammar CookParser;
 import CookLexer;
 
 
-receta	: iniciar_cocina tiempo porciones ingredientes accion+ finalizar_cocina	
+receta	: iniciar_cocina tiempo porciones ingredientes accion+ finalizar_cocina
 		;
+
+//-----------------------TIEMPO QUE DEMORA LA RECETA-------------------------
+tiempo		: NUMBER MEDIDAS_TIEMPO PUNTO;
+
+//----------------------PORCIONES(CANTIDAD DE PERSONAS)----------------------
+
+porciones	: NUMERO PORCION_TYPE;
+
+//-------------------------DECLARACION DE VARIABLES--------------------------
+
+// quiero considerar el hecho de que hay que poner talvez los numero de ingrediente como variables. 
+
+ingredientes: | DECLARACION CARNE_TYPE NUMERO MEDICION
+							| DECLARACION VEGETAL_TYPE NUMERO MEDICION
+							| DECLARACION PESCADO_TYPE NUMERO MEDICION
+							| DECLARACION LEGUMBRE_TYPE NUMERO MEDICION
+							| DECLARACION LIQUID_TYPE NUMERO MEDICION
+							| DECLARACION CONDIMENTO_TYPE NUMERO MEDICION
+							;
 
 accion		: declarar
     		| operacion
@@ -17,23 +36,23 @@ accion		: declarar
     		| cicloconfin
     		;
 
-iniciar_cocina		: BEGIN						
+iniciar_cocina		: BEGIN
 					;
 
-finalizar_cocina	: END		
-					;					
-					
-operacion		: PALABRA		
+finalizar_cocina	: END
+					;
+
+operacion		: PALABRA
 				| operacion OPER operacion
 				| RANDOM PAR_IZ NUMBER COMMA NUMBER PAR_DE
             	| ABS PAR_IZ operacion PAR_DE
             	| CUADRADO PAR_IZ operacion PAR_DE
             	| RAIZ PAR_IZ operacion PAR_DE
 				;
-				
-operacion_logica 	: operacion AND operacion 					
+
+operacion_logica 	: operacion AND operacion
             		| operacion OR operacion;
-				
+
 declarar        : VAR tipo_variable PALABRA PTOCOMMA
 				| CONST tipo_variable PALABRA PTOCOMMA
                 ;
@@ -45,28 +64,28 @@ tipo_variable   : INT_TYPE
                 | STRING_TYPE
                 | BOOL_TYPE
                 ;
-                
-valores 		: PALABRA 
+
+valores 		: PALABRA
 				| NUMBER
 				| STRING
 				| BOOLEAN
 				| FLOAT
 				;
-					
+
 lectura: READ_RW PAR_IZ PALABRA PAR_DE PTOCOMMA;
- 
+
 escribe: WRITE_RW PAR_IZ PALABRA PAR_DE PTOCOMMA;
 
 
-quehacersi 	: IF PAR_IZ condicion PAR_DE CORIZQ accion CORDER  
+quehacersi 	: IF PAR_IZ condicion PAR_DE CORIZQ accion CORDER
 			 (ELIF PAR_IZ condicion PAR_DE CORIZQ accion CORDER)*
-			 (ELSE CORIZQ accion CORDER)? 
+			 (ELSE CORIZQ accion CORDER)?
 			;
 
 condicion	: operacion
-			| STRING comparacion STRING  
+			| STRING comparacion STRING
 			| NUMBER comparacion NUMBER
-			| PALABRA comparacion PALABRA 
+			| PALABRA comparacion PALABRA
 			| PALABRA comparacion NUMBER
 			| NUMBER comparacion PALABRA
 			;
@@ -76,9 +95,9 @@ comparacion : MAYOR
 			| EQUAL
 			| DIST
 			| MAYEQ
-			| MENEQ 
+			| MENEQ
 			;
-			
+
 ciclosinfin : WHILE PAR_IZ condicion PAR_DE CORIZQ accion CORDER;
 
 cicloconfin : FOR PAR_IZ condicionfor PAR_DE CORIZQ accion CORDER;
@@ -87,5 +106,4 @@ condicionfor: asignacion CASH mientras CASH PALABRA MAS MAS
 			| asignacion CASH mientras CASH PALABRA MENOS MENOS
 			;
 
-mientras 	: PALABRA comparacion (PALABRA | NUMBER);  
-
+mientras 	: PALABRA comparacion (PALABRA | NUMBER);
