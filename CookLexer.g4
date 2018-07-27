@@ -6,7 +6,7 @@ fragment NAT		: [0-9]		;
 fragment PUNTO		: '.'		;
 
 NUMERO	: NAT+	|	FLOAT		;
-FLOAT 	: NAT+ DOT NAT+	;
+FLOAT 	: NAT+ PUNTO NAT+	;
 BOOLEAN : TRUE | FALSE		;
 STRING 	: '"' .*? '"'		;
 
