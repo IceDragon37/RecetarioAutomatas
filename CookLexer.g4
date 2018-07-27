@@ -1,13 +1,13 @@
 lexer grammar CookLexer;
 
-fragment COCIDO	: 'COCIDO'		;
-fragment CRUDO	: 'CRUDO'		;
+fragment COCIDO	: 'CUIT'		;
+fragment CRUDO	: 'BRUT'		;
 fragment NAT		: [0-9]		;
 fragment PUNTO		: '.'		;
 
-NUMERO	: NAT+	|	FLOAT		;
 FLOAT 	: NAT+ PUNTO NAT+	;
-BOOLEAN : TRUE | FALSE		;
+NUMERO	: NAT+	|	FLOAT		;
+ESTADO 	: COCIDO | CRUDO		;
 STRING 	: '"' .*? '"'		;
 
 PALABRA			: [a-zA-Z]+						;
@@ -18,38 +18,38 @@ TABULACION		: [\t]+							;
 
 //-----------INCIO Y FIN DE LA RECETA----------------
 
-PREPARARINGREDIENTES		: 'INICIAR_RECETA'    	;
-FINCOCINA					: 'FINALIZAR_RECETA'    ;
+PREPARARINGREDIENTES		: 'COMMENCER_LA_RECETTE'    	;
+FINCOCINA					: 'ACHEVEMENT_RECETTE'    ;
 
 //---------------CONDICIONES Y CICLOS---------------
 
-SINO 		: 'SINO'	;
-WAITING 	: 'ESPERAR'	;
-ENDWAIT		: 'RETOMAR';
-WI	 		: 'SI'	;
-ELIF	: 'SINO_SI';
+SINO 		: 'MAIS'	;
+WAITING 	: 'ATTENDRE'	;
+ENDWAIT		: 'RETOUR';
+SI	 		: 'OUI'	;
 
-
-MEDICION 		     : 'ONZ' | 'gr.' | 'cc.' | 'tbsp' ;
-CONDIMENTO_TYPE	 : 'CONDIMENTOS'					        ;
-DECLARACION			 : 'INGREDIENTE'					        ;
-CARNE_TYPE 		   : 'CARNE'						            ;
-VEGETAL_TYPE 	   : 'VEGETAL'					       	    ;
-LEGUMBRE_TYPE 	 : 'LEGUMBRE'					            ;
-PESCADO_TYPE 	   : 'PESCADO'						          ;
-LIQUID_TYPE		   : 'LIQUIDO'					        	  ;
-RECIPIENTE_TYPE  : 'RECIPIENTE'					          ;
-CORTE_TYPE		   : 'CORTE'						            ;
-MEDIDAS_TIEMPO	 : 'HRS' | 'S' | 'MIN'| 'DIAS'	  ;
-APARATO_TYPE	   : 'APARATO'						          ;
-PORCION_TYPE		 : 'PERSONA' | 'PERSONAS'					;
+//-------------VARIABLES Y MEDICIONES----------------
+ 
+MEDICION 		    : 'ONZ' | 'gr.' | 'cc.' | 'tbsp'		;
+CONDIMENTO_TYPE		: 'CONDIMENTOS'					        ;
+DECLARACION			: 'INGREDIENT'					        ;
+CARNE_TYPE 		   	: 'CARNE'						        ;
+VEGETAL_TYPE 	   	: 'VEGETAL'					       	    ;
+LEGUMBRE_TYPE 	 	: 'LEGUMBRE'					        ;
+PESCADO_TYPE 	   	: 'PESCADO'						        ;
+LIQUID_TYPE		   	: 'LIQUIDO'					        	;
+RECIPIENTE_TYPE  	: 'RECIPIENTE'					        ;
+CORTE_TYPE		  	: 'CORTE'						        ;
+MEDIDAS_TIEMPO	 	: 'HRS' | 'S' | 'MIN'| 'DIAS'	  		;
+APARATO_TYPE	   	: 'APARATO'						        ;
+PORCION_TYPE		: 'PERSONA' | 'PERSONAS'				;
 
 ESCRIBIR 	: 'ANOTAR'	  ;
-LEER 		  : 'INGRESE'	  ;
+LEER 		: 'INGRESE'	  ;
 
 PAR_DE 		: ')';
 PAR_IZ		: '(';
-COMA		  : ',';
+COMA		: ',';
 PTOCOMA		: ';';
 CORDER		: ']';
 CORIZQ		: '[';
@@ -63,17 +63,17 @@ OR 			: 'O';
 
 //-----------FUNCIONES------------
 
-MAS			  : 'AGREGAR'				      ;
-MENOS		  : 'QUITAR'				      ;
+MAS			: 'AGREGAR'				      ;
+MENOS		: 'QUITAR'				      ;
 PARTIR		: 'PARTIR'				      ;
-PELAR		  : 'PELAR'				        ;
+PELAR		: 'PELAR'				        ;
 ENCEDER		: 'ENCENDER'			      ;
 PREHOT		: 'PRECALENTAR'			    ;
 HERVIR 		: 'HERVIR'				      ;
 MACERAR		: 'MACERAR'				      ;
 AMASAR		: 'AMASAR'				      ;
-GIRO		  : 'MEZCLAR'    			    ;
-MOLER		  : 'MOLER'				        ;
+GIRO		: 'MEZCLAR'    			    ;
+MOLER		: 'MOLER'				        ;
 SERVIR		: 'SERVIR'				      ;
 UNTAR	  	: 'UNTAR' | 'ENGRASAR'	;
 EMPANIZAR	: 'EMPANIZAR'			      ;
@@ -89,4 +89,3 @@ MENEQ		       : '<='			;
 ASIGNACION	   : '$'			;
 
 
-OPER 		: MAS | MENOS ;
