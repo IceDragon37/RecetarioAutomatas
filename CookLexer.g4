@@ -5,8 +5,8 @@ fragment CRUDO	: 'CRUDO'		;
 fragment NAT		: [0-9]		;
 fragment PUNTO		: '.'		;
 
-NUMERO	: NAT+				;
-FLOAT 	: NUMBER DOT NUMBER	;
+NUMERO	: NAT+	|	FLOAT		;
+FLOAT 	: NAT+ DOT NAT+	;
 BOOLEAN : TRUE | FALSE		;
 STRING 	: '"' .*? '"'		;
 
