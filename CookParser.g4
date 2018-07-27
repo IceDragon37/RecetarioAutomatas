@@ -7,7 +7,7 @@ receta	: iniciar_cocina tiempo porciones ingredientes accion+ finalizar_cocina
 		;
 
 //-----------------------TIEMPO QUE DEMORA LA RECETA-------------------------
-tiempo		: NUMBER MEDIDAS_TIEMPO PUNTO;
+tiempo		: NUMERO MEDIDAS_TIEMPO PUNTO;
 
 //----------------------PORCIONES(CANTIDAD DE PERSONAS)----------------------
 
@@ -43,10 +43,12 @@ accion		: declarar
     		| cicloconfin
     		;
 
-iniciar_cocina		: BEGIN
+
+
+iniciar_cocina		: PREPARARINGREDIENTES
 					;
 
-finalizar_cocina	: END
+finalizar_cocina	: FINCOCINA
 					;
 
 operacion		: PALABRA
