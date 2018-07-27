@@ -26,7 +26,7 @@ FINCOCINA					: 'FINALIZAR_RECETA'    ;
 SINO 		: 'SINO'	;
 WAITING 	: 'ESPERAR'	;
 ENDWAIT		: 'RETOMAR';
-	 		: 'SI'	;
+WI	 		: 'SI'	;
 ELIF	: 'SINO_SI';
 
 
