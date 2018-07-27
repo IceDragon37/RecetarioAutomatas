@@ -15,15 +15,22 @@ porciones	: NUMERO PORCION_TYPE;
 
 //-------------------------DECLARACION DE VARIABLES--------------------------
 
-// quiero considerar el hecho de que hay que poner talvez los numero de ingrediente como variables. 
+// quiero considerar el hecho de que hay que poner talvez los numero de ingrediente como variables.
 
-ingredientes: | DECLARACION CARNE_TYPE NUMERO MEDICION
-							| DECLARACION VEGETAL_TYPE NUMERO MEDICION
-							| DECLARACION PESCADO_TYPE NUMERO MEDICION
-							| DECLARACION LEGUMBRE_TYPE NUMERO MEDICION
-							| DECLARACION LIQUID_TYPE NUMERO MEDICION
-							| DECLARACION CONDIMENTO_TYPE NUMERO MEDICION
+ingredientes: DECLARACION tipo_ingrediente NUMERO MEDICION
 							;
+
+tipo_ingrediente: 	CARNE_TYPE
+									| PESCADO_TYPE
+									| CONDIMENTO_TYPE
+									| VEGETAL_TYPE
+									| LEGUMBRE_TYPE
+									| LIQUID_TYPE
+									;
+
+tipo_utencilio:		RECIPIENTE_TYPE
+								| APARATO_TYPE
+								;
 
 accion		: declarar
     		| operacion
