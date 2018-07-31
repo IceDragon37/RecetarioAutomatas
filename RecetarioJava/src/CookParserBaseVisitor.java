@@ -1,5 +1,4 @@
-// Generated from CookParser.g4 by ANTLR 4.4
-import org.antlr.v4.runtime.misc.NotNull;
+// Generated from CookParser.g4 by ANTLR 4.6
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -17,145 +16,159 @@ public class CookParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRecipiente(@NotNull CookParserParser.RecipienteContext ctx) { return visitChildren(ctx); }
+	@Override public T visitReceta(CookParserParser.RecetaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAccion(@NotNull CookParserParser.AccionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIniciar_cocina(CookParserParser.Iniciar_cocinaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFinalizar_cocina(@NotNull CookParserParser.Finalizar_cocinaContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFinalizar_cocina(CookParserParser.Finalizar_cocinaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCiclosinfin(@NotNull CookParserParser.CiclosinfinContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTiempo(CookParserParser.TiempoContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPorciones(@NotNull CookParserParser.PorcionesContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPorciones(CookParserParser.PorcionesContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMoler(@NotNull CookParserParser.MolerContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIngrediente(CookParserParser.IngredienteContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitReceta(@NotNull CookParserParser.RecetaContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTipo_ingrediente(CookParserParser.Tipo_ingredienteContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCondicion(@NotNull CookParserParser.CondicionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAparato(CookParserParser.AparatoContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIngrediente(@NotNull CookParserParser.IngredienteContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRecipiente(CookParserParser.RecipienteContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPelar(@NotNull CookParserParser.PelarContext ctx) { return visitChildren(ctx); }
+	@Override public T visitUtencilio(CookParserParser.UtencilioContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitYo_creo_que_van_a_pelear_con_cuchillos(@NotNull CookParserParser.Yo_creo_que_van_a_pelear_con_cuchillosContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAccion(CookParserParser.AccionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTiempo(@NotNull CookParserParser.TiempoContext ctx) { return visitChildren(ctx); }
+	@Override public T visitOperaciones(CookParserParser.OperacionesContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitQuehacersi(@NotNull CookParserParser.QuehacersiContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMezclar(CookParserParser.MezclarContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitHervir(@NotNull CookParserParser.HervirContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMoler(CookParserParser.MolerContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitUtencilio(@NotNull CookParserParser.UtencilioContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPelar(CookParserParser.PelarContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIniciar_cocina(@NotNull CookParserParser.Iniciar_cocinaContext ctx) { return visitChildren(ctx); }
+	@Override public T visitServir(CookParserParser.ServirContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMezclar(@NotNull CookParserParser.MezclarContext ctx) { return visitChildren(ctx); }
+	@Override public T visitHervir(CookParserParser.HervirContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAparato(@NotNull CookParserParser.AparatoContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDeclararcorte(CookParserParser.DeclararcorteContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitServir(@NotNull CookParserParser.ServirContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCortar(CookParserParser.CortarContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTipo_ingrediente(@NotNull CookParserParser.Tipo_ingredienteContext ctx) { return visitChildren(ctx); }
+	@Override public T visitYo_creo_que_van_a_pelear_con_cuchillos(CookParserParser.Yo_creo_que_van_a_pelear_con_cuchillosContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitOperaciones(@NotNull CookParserParser.OperacionesContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCondicion(CookParserParser.CondicionContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitQuehacersi(CookParserParser.QuehacersiContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCiclosinfin(CookParserParser.CiclosinfinContext ctx) { return visitChildren(ctx); }
 }
