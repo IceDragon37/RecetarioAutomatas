@@ -1,18 +1,17 @@
 lexer grammar CookLexer;
 
-fragment COCIDO	: 'CUIT';
+fragment COCIDO	: 'CUIT'		;
 fragment CRUDO	: 'BRUT'		;
+fragment HERVIDO: 'BOUILLE'		;
 fragment NAT		: [0-9]		;
 fragment PUNTO		: '.'		;
 
-FLOAT 	: NAT+ PUNTO NAT+	;
-NUMERO	: NAT+	|	FLOAT		;
-ESTADO 	: COCIDO | CRUDO		;
-STRING 	: '"' .*? '"'		;
+FLOAT 	: NAT+ PUNTO NAT+				;
+NUMERO	: NAT+	|	FLOAT				;
+ESTADO 	: COCIDO | CRUDO | HERVIDO		;
+STRING 	: '"' .*? '"'					;
 COMMENT	:  '!' .*? '\r'? '\n' -> skip	;
 WS 		: [ \t\r\n]+ -> skip 			;
-
-CONSEJOS		:  '$$'.PALABRA.'$$'			;
 
 
 //-----------INCIO Y FIN DE LA RECETA----------------

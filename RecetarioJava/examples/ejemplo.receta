@@ -5,20 +5,20 @@ COMMENCER_LA_RECETTE
 	INGREDIENT VEGETAL papa 1000 grs.
 	INGREDIENT LACTEO mantequilla 1 tbsp
 	INGREDIENT LACTEO leche 200 cc.
-	INGREDIENT CONDIMENTOS pimienta 1 gr.
+	INGREDIENT CONDIMENTOS pimienta a_gusto
 	INGREDIENT CONDIMENTOS sal a_gusto
+	INGREDIENT LIQUIDO agua 1000 cc.
 
 	UTENCILIO pisapapas
 	UTENCILIO cuchillo
 
 	APARATO cocina
-	APARATO horno
   
 	RECIPIENTE olla
  
 	PELAR(papa)
 	HERVIR(agua,olla)
-	SI(agua = CUIT)FAIRE 
+	SI(agua = BOUILLE)FAIRE 
 		MEZCLAR(agua,papa) = aguapapa
 		HERVIR(aguapapa,olla)
 		¿DUELO-A-MUERTE-CON-CUCHILLOS? cuchillo (aguapapa,mantequilla)
