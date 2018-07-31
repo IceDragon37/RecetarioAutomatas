@@ -32,13 +32,13 @@ tipo_ingrediente	: CARNE_TYPE
 					| CEREAL_TYPE
 					;
 				
-
-
 aparato			:  APARATO_TYPE PALABRA;
 
 recipiente		: RECIPIENTE_TYPE PALABRA;
 				
 utencilio	 	: UTENCILIO_TYPE PALABRA ;
+
+//-----------------------ACCIONES Y FUNCIONES--------------------------------
 
 accion		: operaciones
     		| quehacersi
@@ -55,6 +55,16 @@ operaciones		: hervir
 				| cortar
 				| declararcorte
 				;
+
+
+
+precalentar : PREHOT PAR_IZ PALABRA COMA NUMERO MEDIDA_TEMPERATURA PAR_DE ;
+
+encender: ENCENDER PAR_IZ PALABRA COMA NUMERO MEDIDA_TEMPERATURA PAR_DE ; 
+
+macerar	: MACERAR PAR_IZ PALABRA COMA PALABRA MENOR PALABRA (COMA PALABRA)* MAYOR NUMERO MEDIDAS_TIEMPO PAR_DE ; //FUENTE EN LA QUE SE AMACERA + LIQUIDO QUE SE AMACERA + INGREDIENTES + TIEMPO 
+
+rallar 	: RALLAR PAR_IZ PALABRA PAR_DE ;
 
 mezclar	: GIRO PAR_IZ PALABRA (COMA PALABRA)+ PAR_DE IGUALAR PALABRA ;
 
@@ -79,4 +89,7 @@ quehacersi	: SI PAR_IZ condicion PAR_DE DO accion+ STOP ;
 ciclosinfin : WAITING PAR_IZ condicion PAR_DE LLAVEIZQ accion+	LLAVEDER ;
 
 
-//_------------------FOR PENDIENTE-------
+//-------------------FOR PENDIENTE-------
+
+
+

@@ -82,6 +82,30 @@ public interface CookParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOperaciones(CookParserParser.OperacionesContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link CookParserParser#precalentar}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrecalentar(CookParserParser.PrecalentarContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CookParserParser#encender}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEncender(CookParserParser.EncenderContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CookParserParser#macerar}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMacerar(CookParserParser.MacerarContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CookParserParser#rallar}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRallar(CookParserParser.RallarContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link CookParserParser#mezclar}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

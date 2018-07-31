@@ -21,25 +21,27 @@ public class CookParserParser extends Parser {
 		CONDIMENTO_TYPE=17, DECLARACION=18, CARNE_TYPE=19, VEGETAL_TYPE=20, LEGUMBRE_TYPE=21, 
 		PESCADO_TYPE=22, LIQUID_TYPE=23, LACTEO_TYPE=24, CEREAL_TYPE=25, RECIPIENTE_TYPE=26, 
 		CORTE_TYPE=27, MEDIDAS_TIEMPO=28, APARATO_TYPE=29, PORCION_TYPE=30, UTENCILIO_TYPE=31, 
-		TIEMPODECLARACION=32, CUCHILLO=33, ESCRIBIR=34, LEER=35, PAR_DE=36, PAR_IZ=37, 
-		COMA=38, PTOCOMA=39, CORDER=40, CORIZQ=41, LLAVEIZQ=42, LLAVEDER=43, AND=44, 
-		OR=45, MAS=46, MENOS=47, PARTIR=48, PELAR=49, ENCEDER=50, PREHOT=51, HERVIR=52, 
-		MACERAR=53, AMASAR=54, GIRO=55, MOLER=56, SERVIR=57, UNTAR=58, EMPANIZAR=59, 
-		RALLAR=60, CORTAR=61, DUELO_A_MUERTE_CON_CUCHILLOS=62, IGUALAR=63, DISTINGUIR=64, 
-		MAYOR=65, MENOR=66, MAYEQ=67, MENEQ=68, NOMBREVAR=69, PALABRA=70;
+		MEDIDA_TEMPERATURA=32, TIEMPODECLARACION=33, CUCHILLO=34, ESCRIBIR=35, 
+		LEER=36, PAR_DE=37, PAR_IZ=38, COMA=39, PTOCOMA=40, CORDER=41, CORIZQ=42, 
+		LLAVEIZQ=43, LLAVEDER=44, AND=45, OR=46, MAS=47, MENOS=48, PARTIR=49, 
+		PELAR=50, ENCENDER=51, PREHOT=52, HERVIR=53, MACERAR=54, AMASAR=55, GIRO=56, 
+		MOLER=57, SERVIR=58, UNTAR=59, EMPANIZAR=60, RALLAR=61, CORTAR=62, DUELO_A_MUERTE_CON_CUCHILLOS=63, 
+		IGUALAR=64, DISTINGUIR=65, MAYOR=66, MENOR=67, MAYEQ=68, MENEQ=69, NOMBREVAR=70, 
+		PALABRA=71;
 	public static final int
 		RULE_receta = 0, RULE_iniciar_cocina = 1, RULE_finalizar_cocina = 2, RULE_tiempo = 3, 
 		RULE_porciones = 4, RULE_ingrediente = 5, RULE_tipo_ingrediente = 6, RULE_aparato = 7, 
 		RULE_recipiente = 8, RULE_utencilio = 9, RULE_accion = 10, RULE_operaciones = 11, 
-		RULE_mezclar = 12, RULE_moler = 13, RULE_pelar = 14, RULE_servir = 15, 
-		RULE_hervir = 16, RULE_declararcorte = 17, RULE_cortar = 18, RULE_yo_creo_que_van_a_pelear_con_cuchillos = 19, 
-		RULE_condicion = 20, RULE_quehacersi = 21, RULE_ciclosinfin = 22;
+		RULE_precalentar = 12, RULE_encender = 13, RULE_macerar = 14, RULE_rallar = 15, 
+		RULE_mezclar = 16, RULE_moler = 17, RULE_pelar = 18, RULE_servir = 19, 
+		RULE_hervir = 20, RULE_declararcorte = 21, RULE_cortar = 22, RULE_yo_creo_que_van_a_pelear_con_cuchillos = 23, 
+		RULE_condicion = 24, RULE_quehacersi = 25, RULE_ciclosinfin = 26;
 	public static final String[] ruleNames = {
 		"receta", "iniciar_cocina", "finalizar_cocina", "tiempo", "porciones", 
 		"ingrediente", "tipo_ingrediente", "aparato", "recipiente", "utencilio", 
-		"accion", "operaciones", "mezclar", "moler", "pelar", "servir", "hervir", 
-		"declararcorte", "cortar", "yo_creo_que_van_a_pelear_con_cuchillos", "condicion", 
-		"quehacersi", "ciclosinfin"
+		"accion", "operaciones", "precalentar", "encender", "macerar", "rallar", 
+		"mezclar", "moler", "pelar", "servir", "hervir", "declararcorte", "cortar", 
+		"yo_creo_que_van_a_pelear_con_cuchillos", "condicion", "quehacersi", "ciclosinfin"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
@@ -47,12 +49,13 @@ public class CookParserParser extends Parser {
 		"'ACHEVEMENT_RECETTE'", "'AUTRE'", "'ATTENDRE'", "'FAIRE'", "'ARRETEZ'", 
 		"'RETOUR'", "'SI'", null, "'CONDIMENTOS'", "'INGREDIENT'", "'CARNE'", 
 		"'VEGETAL'", "'LEGUMBRE'", "'PESCADO'", "'LIQUIDO'", "'LACTEO'", "'CEREAL'", 
-		"'RECIPIENTE'", "'CORTE'", null, "'APARATO'", null, "'UTENCILIO'", "'TEMPS'", 
-		null, "'ANOTAR'", "'INGRESE'", "')'", "'('", "','", "';'", "']'", "'['", 
-		"'{'", "'}'", "'Y'", "'O'", "'AGREGAR'", "'QUITAR'", "'PARTIR'", "'PELAR'", 
-		"'ENCENDER'", "'PRECALENTAR'", "'HERVIR'", "'MACERAR'", "'AMASAR'", "'MEZCLAR'", 
-		"'MOLER'", "'SERVIR'", null, "'EMPANIZAR'", "'RALLAR'", "'CORTAR'", "'�DUELO-A-MUERTE-CON-CUCHILLOS?'", 
-		"'='", "'!='", "'>'", "'<'", "'>='", "'<='", "'$'"
+		"'RECIPIENTE'", "'CORTE'", null, "'APARATO'", null, "'UTENCILIO'", null, 
+		"'TEMPS'", null, "'ANOTAR'", "'INGRESE'", "')'", "'('", "','", "';'", 
+		"']'", "'['", "'{'", "'}'", "'Y'", "'O'", "'AGREGAR'", "'QUITAR'", "'PARTIR'", 
+		"'PELAR'", "'ENCENDER'", "'PRECALENTAR'", "'HERVIR'", "'MACERAR'", "'AMASAR'", 
+		"'MEZCLAR'", "'MOLER'", "'SERVIR'", null, "'EMPANIZAR'", "'RALLAR'", "'CORTAR'", 
+		"'�DUELO-A-MUERTE-CON-CUCHILLOS?'", "'='", "'!='", "'>'", "'<'", "'>='", 
+		"'<='", "'$'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, "FLOAT", "NUMERO", "ESTADO", "STRING", "COMMENT", "WS", "CONSEJOS", 
@@ -60,12 +63,13 @@ public class CookParserParser extends Parser {
 		"ENDWAIT", "SI", "MEDICION", "CONDIMENTO_TYPE", "DECLARACION", "CARNE_TYPE", 
 		"VEGETAL_TYPE", "LEGUMBRE_TYPE", "PESCADO_TYPE", "LIQUID_TYPE", "LACTEO_TYPE", 
 		"CEREAL_TYPE", "RECIPIENTE_TYPE", "CORTE_TYPE", "MEDIDAS_TIEMPO", "APARATO_TYPE", 
-		"PORCION_TYPE", "UTENCILIO_TYPE", "TIEMPODECLARACION", "CUCHILLO", "ESCRIBIR", 
-		"LEER", "PAR_DE", "PAR_IZ", "COMA", "PTOCOMA", "CORDER", "CORIZQ", "LLAVEIZQ", 
-		"LLAVEDER", "AND", "OR", "MAS", "MENOS", "PARTIR", "PELAR", "ENCEDER", 
-		"PREHOT", "HERVIR", "MACERAR", "AMASAR", "GIRO", "MOLER", "SERVIR", "UNTAR", 
-		"EMPANIZAR", "RALLAR", "CORTAR", "DUELO_A_MUERTE_CON_CUCHILLOS", "IGUALAR", 
-		"DISTINGUIR", "MAYOR", "MENOR", "MAYEQ", "MENEQ", "NOMBREVAR", "PALABRA"
+		"PORCION_TYPE", "UTENCILIO_TYPE", "MEDIDA_TEMPERATURA", "TIEMPODECLARACION", 
+		"CUCHILLO", "ESCRIBIR", "LEER", "PAR_DE", "PAR_IZ", "COMA", "PTOCOMA", 
+		"CORDER", "CORIZQ", "LLAVEIZQ", "LLAVEDER", "AND", "OR", "MAS", "MENOS", 
+		"PARTIR", "PELAR", "ENCENDER", "PREHOT", "HERVIR", "MACERAR", "AMASAR", 
+		"GIRO", "MOLER", "SERVIR", "UNTAR", "EMPANIZAR", "RALLAR", "CORTAR", "DUELO_A_MUERTE_CON_CUCHILLOS", 
+		"IGUALAR", "DISTINGUIR", "MAYOR", "MENOR", "MAYEQ", "MENEQ", "NOMBREVAR", 
+		"PALABRA"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -177,83 +181,83 @@ public class CookParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(46);
+			setState(54);
 			iniciar_cocina();
-			setState(47);
+			setState(55);
 			tiempo();
-			setState(48);
+			setState(56);
 			porciones();
-			setState(50); 
+			setState(58); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(49);
+				setState(57);
 				ingrediente();
 				}
 				}
-				setState(52); 
+				setState(60); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==DECLARACION );
-			setState(55); 
+			setState(63); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(54);
+				setState(62);
 				utencilio();
 				}
 				}
-				setState(57); 
+				setState(65); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==UTENCILIO_TYPE );
-			setState(60); 
+			setState(68); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(59);
+				setState(67);
 				aparato();
 				}
 				}
-				setState(62); 
+				setState(70); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==APARATO_TYPE );
-			setState(65); 
+			setState(73); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(64);
+				setState(72);
 				recipiente();
 				}
 				}
-				setState(67); 
+				setState(75); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==RECIPIENTE_TYPE );
-			setState(72);
+			setState(80);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << WAITING) | (1L << SI) | (1L << CORTE_TYPE) | (1L << PELAR) | (1L << HERVIR) | (1L << GIRO) | (1L << MOLER) | (1L << SERVIR) | (1L << CORTAR) | (1L << DUELO_A_MUERTE_CON_CUCHILLOS))) != 0)) {
 				{
 				{
-				setState(69);
+				setState(77);
 				accion();
 				}
 				}
-				setState(74);
+				setState(82);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(75);
+			setState(83);
 			finalizar_cocina();
 			}
 		}
@@ -287,7 +291,7 @@ public class CookParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(77);
+			setState(85);
 			match(PREPARARINGREDIENTES);
 			}
 		}
@@ -321,7 +325,7 @@ public class CookParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(79);
+			setState(87);
 			match(FINCOCINA);
 			}
 		}
@@ -357,11 +361,11 @@ public class CookParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(81);
+			setState(89);
 			match(TIEMPODECLARACION);
-			setState(82);
+			setState(90);
 			match(NUMERO);
-			setState(83);
+			setState(91);
 			match(MEDIDAS_TIEMPO);
 			}
 		}
@@ -396,9 +400,9 @@ public class CookParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(85);
+			setState(93);
 			match(NUMERO);
-			setState(86);
+			setState(94);
 			match(PORCION_TYPE);
 			}
 		}
@@ -439,23 +443,23 @@ public class CookParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(88);
+			setState(96);
 			match(DECLARACION);
-			setState(89);
+			setState(97);
 			tipo_ingrediente();
-			setState(90);
+			setState(98);
 			match(PALABRA);
-			setState(92);
+			setState(100);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==NUMERO) {
 				{
-				setState(91);
+				setState(99);
 				match(NUMERO);
 				}
 			}
 
-			setState(94);
+			setState(102);
 			match(MEDICION);
 			}
 		}
@@ -497,7 +501,7 @@ public class CookParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(96);
+			setState(104);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << CONDIMENTO_TYPE) | (1L << CARNE_TYPE) | (1L << VEGETAL_TYPE) | (1L << LEGUMBRE_TYPE) | (1L << PESCADO_TYPE) | (1L << LIQUID_TYPE) | (1L << LACTEO_TYPE) | (1L << CEREAL_TYPE))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -540,9 +544,9 @@ public class CookParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(98);
+			setState(106);
 			match(APARATO_TYPE);
-			setState(99);
+			setState(107);
 			match(PALABRA);
 			}
 		}
@@ -577,9 +581,9 @@ public class CookParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(101);
+			setState(109);
 			match(RECIPIENTE_TYPE);
-			setState(102);
+			setState(110);
 			match(PALABRA);
 			}
 		}
@@ -614,9 +618,9 @@ public class CookParserParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(104);
+			setState(112);
 			match(UTENCILIO_TYPE);
-			setState(105);
+			setState(113);
 			match(PALABRA);
 			}
 		}
@@ -656,7 +660,7 @@ public class CookParserParser extends Parser {
 		AccionContext _localctx = new AccionContext(_ctx, getState());
 		enterRule(_localctx, 20, RULE_accion);
 		try {
-			setState(110);
+			setState(118);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case CORTE_TYPE:
@@ -669,21 +673,21 @@ public class CookParserParser extends Parser {
 			case DUELO_A_MUERTE_CON_CUCHILLOS:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(107);
+				setState(115);
 				operaciones();
 				}
 				break;
 			case SI:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(108);
+				setState(116);
 				quehacersi();
 				}
 				break;
 			case WAITING:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(109);
+				setState(117);
 				ciclosinfin();
 				}
 				break;
@@ -742,67 +746,299 @@ public class CookParserParser extends Parser {
 		OperacionesContext _localctx = new OperacionesContext(_ctx, getState());
 		enterRule(_localctx, 22, RULE_operaciones);
 		try {
-			setState(120);
+			setState(128);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case HERVIR:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(112);
+				setState(120);
 				hervir();
 				}
 				break;
 			case GIRO:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(113);
+				setState(121);
 				mezclar();
 				}
 				break;
 			case DUELO_A_MUERTE_CON_CUCHILLOS:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(114);
+				setState(122);
 				yo_creo_que_van_a_pelear_con_cuchillos();
 				}
 				break;
 			case MOLER:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(115);
+				setState(123);
 				moler();
 				}
 				break;
 			case PELAR:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(116);
+				setState(124);
 				pelar();
 				}
 				break;
 			case SERVIR:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(117);
+				setState(125);
 				servir();
 				}
 				break;
 			case CORTAR:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(118);
+				setState(126);
 				cortar();
 				}
 				break;
 			case CORTE_TYPE:
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(119);
+				setState(127);
 				declararcorte();
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class PrecalentarContext extends ParserRuleContext {
+		public TerminalNode PREHOT() { return getToken(CookParserParser.PREHOT, 0); }
+		public TerminalNode PAR_IZ() { return getToken(CookParserParser.PAR_IZ, 0); }
+		public TerminalNode PALABRA() { return getToken(CookParserParser.PALABRA, 0); }
+		public TerminalNode COMA() { return getToken(CookParserParser.COMA, 0); }
+		public TerminalNode NUMERO() { return getToken(CookParserParser.NUMERO, 0); }
+		public TerminalNode MEDIDA_TEMPERATURA() { return getToken(CookParserParser.MEDIDA_TEMPERATURA, 0); }
+		public TerminalNode PAR_DE() { return getToken(CookParserParser.PAR_DE, 0); }
+		public PrecalentarContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_precalentar; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CookParserVisitor ) return ((CookParserVisitor<? extends T>)visitor).visitPrecalentar(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final PrecalentarContext precalentar() throws RecognitionException {
+		PrecalentarContext _localctx = new PrecalentarContext(_ctx, getState());
+		enterRule(_localctx, 24, RULE_precalentar);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(130);
+			match(PREHOT);
+			setState(131);
+			match(PAR_IZ);
+			setState(132);
+			match(PALABRA);
+			setState(133);
+			match(COMA);
+			setState(134);
+			match(NUMERO);
+			setState(135);
+			match(MEDIDA_TEMPERATURA);
+			setState(136);
+			match(PAR_DE);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class EncenderContext extends ParserRuleContext {
+		public TerminalNode ENCENDER() { return getToken(CookParserParser.ENCENDER, 0); }
+		public TerminalNode PAR_IZ() { return getToken(CookParserParser.PAR_IZ, 0); }
+		public TerminalNode PALABRA() { return getToken(CookParserParser.PALABRA, 0); }
+		public TerminalNode COMA() { return getToken(CookParserParser.COMA, 0); }
+		public TerminalNode NUMERO() { return getToken(CookParserParser.NUMERO, 0); }
+		public TerminalNode MEDIDA_TEMPERATURA() { return getToken(CookParserParser.MEDIDA_TEMPERATURA, 0); }
+		public TerminalNode PAR_DE() { return getToken(CookParserParser.PAR_DE, 0); }
+		public EncenderContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_encender; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CookParserVisitor ) return ((CookParserVisitor<? extends T>)visitor).visitEncender(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final EncenderContext encender() throws RecognitionException {
+		EncenderContext _localctx = new EncenderContext(_ctx, getState());
+		enterRule(_localctx, 26, RULE_encender);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(138);
+			match(ENCENDER);
+			setState(139);
+			match(PAR_IZ);
+			setState(140);
+			match(PALABRA);
+			setState(141);
+			match(COMA);
+			setState(142);
+			match(NUMERO);
+			setState(143);
+			match(MEDIDA_TEMPERATURA);
+			setState(144);
+			match(PAR_DE);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class MacerarContext extends ParserRuleContext {
+		public TerminalNode MACERAR() { return getToken(CookParserParser.MACERAR, 0); }
+		public TerminalNode PAR_IZ() { return getToken(CookParserParser.PAR_IZ, 0); }
+		public List<TerminalNode> PALABRA() { return getTokens(CookParserParser.PALABRA); }
+		public TerminalNode PALABRA(int i) {
+			return getToken(CookParserParser.PALABRA, i);
+		}
+		public List<TerminalNode> COMA() { return getTokens(CookParserParser.COMA); }
+		public TerminalNode COMA(int i) {
+			return getToken(CookParserParser.COMA, i);
+		}
+		public TerminalNode MENOR() { return getToken(CookParserParser.MENOR, 0); }
+		public TerminalNode MAYOR() { return getToken(CookParserParser.MAYOR, 0); }
+		public TerminalNode NUMERO() { return getToken(CookParserParser.NUMERO, 0); }
+		public TerminalNode MEDIDAS_TIEMPO() { return getToken(CookParserParser.MEDIDAS_TIEMPO, 0); }
+		public TerminalNode PAR_DE() { return getToken(CookParserParser.PAR_DE, 0); }
+		public MacerarContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_macerar; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CookParserVisitor ) return ((CookParserVisitor<? extends T>)visitor).visitMacerar(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final MacerarContext macerar() throws RecognitionException {
+		MacerarContext _localctx = new MacerarContext(_ctx, getState());
+		enterRule(_localctx, 28, RULE_macerar);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(146);
+			match(MACERAR);
+			setState(147);
+			match(PAR_IZ);
+			setState(148);
+			match(PALABRA);
+			setState(149);
+			match(COMA);
+			setState(150);
+			match(PALABRA);
+			setState(151);
+			match(MENOR);
+			setState(152);
+			match(PALABRA);
+			setState(157);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==COMA) {
+				{
+				{
+				setState(153);
+				match(COMA);
+				setState(154);
+				match(PALABRA);
+				}
+				}
+				setState(159);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(160);
+			match(MAYOR);
+			setState(161);
+			match(NUMERO);
+			setState(162);
+			match(MEDIDAS_TIEMPO);
+			setState(163);
+			match(PAR_DE);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class RallarContext extends ParserRuleContext {
+		public TerminalNode RALLAR() { return getToken(CookParserParser.RALLAR, 0); }
+		public TerminalNode PAR_IZ() { return getToken(CookParserParser.PAR_IZ, 0); }
+		public TerminalNode PALABRA() { return getToken(CookParserParser.PALABRA, 0); }
+		public TerminalNode PAR_DE() { return getToken(CookParserParser.PAR_DE, 0); }
+		public RallarContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_rallar; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CookParserVisitor ) return ((CookParserVisitor<? extends T>)visitor).visitRallar(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final RallarContext rallar() throws RecognitionException {
+		RallarContext _localctx = new RallarContext(_ctx, getState());
+		enterRule(_localctx, 30, RULE_rallar);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(165);
+			match(RALLAR);
+			setState(166);
+			match(PAR_IZ);
+			setState(167);
+			match(PALABRA);
+			setState(168);
+			match(PAR_DE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -842,38 +1078,38 @@ public class CookParserParser extends Parser {
 
 	public final MezclarContext mezclar() throws RecognitionException {
 		MezclarContext _localctx = new MezclarContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_mezclar);
+		enterRule(_localctx, 32, RULE_mezclar);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(122);
+			setState(170);
 			match(GIRO);
-			setState(123);
+			setState(171);
 			match(PAR_IZ);
-			setState(124);
+			setState(172);
 			match(PALABRA);
-			setState(127); 
+			setState(175); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(125);
+				setState(173);
 				match(COMA);
-				setState(126);
+				setState(174);
 				match(PALABRA);
 				}
 				}
-				setState(129); 
+				setState(177); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==COMA );
-			setState(131);
+			setState(179);
 			match(PAR_DE);
-			setState(132);
+			setState(180);
 			match(IGUALAR);
-			setState(133);
+			setState(181);
 			match(PALABRA);
 			}
 		}
@@ -910,21 +1146,21 @@ public class CookParserParser extends Parser {
 
 	public final MolerContext moler() throws RecognitionException {
 		MolerContext _localctx = new MolerContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_moler);
+		enterRule(_localctx, 34, RULE_moler);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(135);
+			setState(183);
 			match(MOLER);
-			setState(136);
+			setState(184);
 			match(PAR_IZ);
-			setState(137);
+			setState(185);
 			match(PALABRA);
-			setState(138);
+			setState(186);
 			match(COMA);
-			setState(139);
+			setState(187);
 			match(PALABRA);
-			setState(140);
+			setState(188);
 			match(PAR_DE);
 			}
 		}
@@ -957,17 +1193,17 @@ public class CookParserParser extends Parser {
 
 	public final PelarContext pelar() throws RecognitionException {
 		PelarContext _localctx = new PelarContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_pelar);
+		enterRule(_localctx, 36, RULE_pelar);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(142);
+			setState(190);
 			match(PELAR);
-			setState(143);
+			setState(191);
 			match(PAR_IZ);
-			setState(144);
+			setState(192);
 			match(PALABRA);
-			setState(145);
+			setState(193);
 			match(PAR_DE);
 			}
 		}
@@ -1000,17 +1236,17 @@ public class CookParserParser extends Parser {
 
 	public final ServirContext servir() throws RecognitionException {
 		ServirContext _localctx = new ServirContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_servir);
+		enterRule(_localctx, 38, RULE_servir);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(147);
+			setState(195);
 			match(SERVIR);
-			setState(148);
+			setState(196);
 			match(PAR_IZ);
-			setState(149);
+			setState(197);
 			match(PALABRA);
-			setState(150);
+			setState(198);
 			match(PAR_DE);
 			}
 		}
@@ -1047,21 +1283,21 @@ public class CookParserParser extends Parser {
 
 	public final HervirContext hervir() throws RecognitionException {
 		HervirContext _localctx = new HervirContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_hervir);
+		enterRule(_localctx, 40, RULE_hervir);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(152);
+			setState(200);
 			match(HERVIR);
-			setState(153);
+			setState(201);
 			match(PAR_IZ);
-			setState(154);
+			setState(202);
 			match(PALABRA);
-			setState(155);
+			setState(203);
 			match(COMA);
-			setState(156);
+			setState(204);
 			match(PALABRA);
-			setState(157);
+			setState(205);
 			match(PAR_DE);
 			}
 		}
@@ -1092,13 +1328,13 @@ public class CookParserParser extends Parser {
 
 	public final DeclararcorteContext declararcorte() throws RecognitionException {
 		DeclararcorteContext _localctx = new DeclararcorteContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_declararcorte);
+		enterRule(_localctx, 42, RULE_declararcorte);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(159);
+			setState(207);
 			match(CORTE_TYPE);
-			setState(160);
+			setState(208);
 			match(PALABRA);
 			}
 		}
@@ -1135,21 +1371,21 @@ public class CookParserParser extends Parser {
 
 	public final CortarContext cortar() throws RecognitionException {
 		CortarContext _localctx = new CortarContext(_ctx, getState());
-		enterRule(_localctx, 36, RULE_cortar);
+		enterRule(_localctx, 44, RULE_cortar);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(162);
+			setState(210);
 			match(CORTAR);
-			setState(163);
+			setState(211);
 			match(PAR_IZ);
-			setState(164);
+			setState(212);
 			match(PALABRA);
-			setState(165);
+			setState(213);
 			match(COMA);
-			setState(166);
+			setState(214);
 			match(PALABRA);
-			setState(167);
+			setState(215);
 			match(PAR_DE);
 			}
 		}
@@ -1189,36 +1425,36 @@ public class CookParserParser extends Parser {
 
 	public final Yo_creo_que_van_a_pelear_con_cuchillosContext yo_creo_que_van_a_pelear_con_cuchillos() throws RecognitionException {
 		Yo_creo_que_van_a_pelear_con_cuchillosContext _localctx = new Yo_creo_que_van_a_pelear_con_cuchillosContext(_ctx, getState());
-		enterRule(_localctx, 38, RULE_yo_creo_que_van_a_pelear_con_cuchillos);
+		enterRule(_localctx, 46, RULE_yo_creo_que_van_a_pelear_con_cuchillos);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(169);
+			setState(217);
 			match(DUELO_A_MUERTE_CON_CUCHILLOS);
-			setState(170);
+			setState(218);
 			match(PALABRA);
-			setState(171);
+			setState(219);
 			match(PAR_IZ);
-			setState(172);
+			setState(220);
 			match(PALABRA);
-			setState(177);
+			setState(225);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==COMA) {
 				{
 				{
-				setState(173);
+				setState(221);
 				match(COMA);
-				setState(174);
+				setState(222);
 				match(PALABRA);
 				}
 				}
-				setState(179);
+				setState(227);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(180);
+			setState(228);
 			match(PAR_DE);
 			}
 		}
@@ -1251,14 +1487,14 @@ public class CookParserParser extends Parser {
 
 	public final CondicionContext condicion() throws RecognitionException {
 		CondicionContext _localctx = new CondicionContext(_ctx, getState());
-		enterRule(_localctx, 40, RULE_condicion);
+		enterRule(_localctx, 48, RULE_condicion);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(182);
+			setState(230);
 			match(PALABRA);
-			setState(183);
+			setState(231);
 			_la = _input.LA(1);
 			if ( !(_la==IGUALAR || _la==DISTINGUIR) ) {
 			_errHandler.recoverInline(this);
@@ -1268,7 +1504,7 @@ public class CookParserParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(184);
+			setState(232);
 			match(ESTADO);
 			}
 		}
@@ -1311,36 +1547,36 @@ public class CookParserParser extends Parser {
 
 	public final QuehacersiContext quehacersi() throws RecognitionException {
 		QuehacersiContext _localctx = new QuehacersiContext(_ctx, getState());
-		enterRule(_localctx, 42, RULE_quehacersi);
+		enterRule(_localctx, 50, RULE_quehacersi);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(186);
+			setState(234);
 			match(SI);
-			setState(187);
+			setState(235);
 			match(PAR_IZ);
-			setState(188);
+			setState(236);
 			condicion();
-			setState(189);
+			setState(237);
 			match(PAR_DE);
-			setState(190);
+			setState(238);
 			match(DO);
-			setState(192); 
+			setState(240); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(191);
+				setState(239);
 				accion();
 				}
 				}
-				setState(194); 
+				setState(242); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << WAITING) | (1L << SI) | (1L << CORTE_TYPE) | (1L << PELAR) | (1L << HERVIR) | (1L << GIRO) | (1L << MOLER) | (1L << SERVIR) | (1L << CORTAR) | (1L << DUELO_A_MUERTE_CON_CUCHILLOS))) != 0) );
-			setState(196);
+			setState(244);
 			match(STOP);
 			}
 		}
@@ -1383,36 +1619,36 @@ public class CookParserParser extends Parser {
 
 	public final CiclosinfinContext ciclosinfin() throws RecognitionException {
 		CiclosinfinContext _localctx = new CiclosinfinContext(_ctx, getState());
-		enterRule(_localctx, 44, RULE_ciclosinfin);
+		enterRule(_localctx, 52, RULE_ciclosinfin);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(198);
+			setState(246);
 			match(WAITING);
-			setState(199);
+			setState(247);
 			match(PAR_IZ);
-			setState(200);
+			setState(248);
 			condicion();
-			setState(201);
+			setState(249);
 			match(PAR_DE);
-			setState(202);
+			setState(250);
 			match(LLAVEIZQ);
-			setState(204); 
+			setState(252); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(203);
+				setState(251);
 				accion();
 				}
 				}
-				setState(206); 
+				setState(254); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << WAITING) | (1L << SI) | (1L << CORTE_TYPE) | (1L << PELAR) | (1L << HERVIR) | (1L << GIRO) | (1L << MOLER) | (1L << SERVIR) | (1L << CORTAR) | (1L << DUELO_A_MUERTE_CON_CUCHILLOS))) != 0) );
-			setState(208);
+			setState(256);
 			match(LLAVEDER);
 			}
 		}
@@ -1428,67 +1664,85 @@ public class CookParserParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3H\u00d5\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3I\u0105\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\3\2\3\2\3"+
-		"\2\3\2\6\2\65\n\2\r\2\16\2\66\3\2\6\2:\n\2\r\2\16\2;\3\2\6\2?\n\2\r\2"+
-		"\16\2@\3\2\6\2D\n\2\r\2\16\2E\3\2\7\2I\n\2\f\2\16\2L\13\2\3\2\3\2\3\3"+
-		"\3\3\3\4\3\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\7\3\7\3\7\3\7\5\7_\n\7\3\7"+
-		"\3\7\3\b\3\b\3\t\3\t\3\t\3\n\3\n\3\n\3\13\3\13\3\13\3\f\3\f\3\f\5\fq\n"+
-		"\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\5\r{\n\r\3\16\3\16\3\16\3\16\3\16\6"+
-		"\16\u0082\n\16\r\16\16\16\u0083\3\16\3\16\3\16\3\16\3\17\3\17\3\17\3\17"+
-		"\3\17\3\17\3\17\3\20\3\20\3\20\3\20\3\20\3\21\3\21\3\21\3\21\3\21\3\22"+
-		"\3\22\3\22\3\22\3\22\3\22\3\22\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\24"+
-		"\3\24\3\24\3\25\3\25\3\25\3\25\3\25\3\25\7\25\u00b2\n\25\f\25\16\25\u00b5"+
-		"\13\25\3\25\3\25\3\26\3\26\3\26\3\26\3\27\3\27\3\27\3\27\3\27\3\27\6\27"+
-		"\u00c3\n\27\r\27\16\27\u00c4\3\27\3\27\3\30\3\30\3\30\3\30\3\30\3\30\6"+
-		"\30\u00cf\n\30\r\30\16\30\u00d0\3\30\3\30\3\30\2\2\31\2\4\6\b\n\f\16\20"+
-		"\22\24\26\30\32\34\36 \"$&(*,.\2\4\4\2\23\23\25\33\3\2AB\u00d0\2\60\3"+
-		"\2\2\2\4O\3\2\2\2\6Q\3\2\2\2\bS\3\2\2\2\nW\3\2\2\2\fZ\3\2\2\2\16b\3\2"+
-		"\2\2\20d\3\2\2\2\22g\3\2\2\2\24j\3\2\2\2\26p\3\2\2\2\30z\3\2\2\2\32|\3"+
-		"\2\2\2\34\u0089\3\2\2\2\36\u0090\3\2\2\2 \u0095\3\2\2\2\"\u009a\3\2\2"+
-		"\2$\u00a1\3\2\2\2&\u00a4\3\2\2\2(\u00ab\3\2\2\2*\u00b8\3\2\2\2,\u00bc"+
-		"\3\2\2\2.\u00c8\3\2\2\2\60\61\5\4\3\2\61\62\5\b\5\2\62\64\5\n\6\2\63\65"+
-		"\5\f\7\2\64\63\3\2\2\2\65\66\3\2\2\2\66\64\3\2\2\2\66\67\3\2\2\2\679\3"+
-		"\2\2\28:\5\24\13\298\3\2\2\2:;\3\2\2\2;9\3\2\2\2;<\3\2\2\2<>\3\2\2\2="+
-		"?\5\20\t\2>=\3\2\2\2?@\3\2\2\2@>\3\2\2\2@A\3\2\2\2AC\3\2\2\2BD\5\22\n"+
-		"\2CB\3\2\2\2DE\3\2\2\2EC\3\2\2\2EF\3\2\2\2FJ\3\2\2\2GI\5\26\f\2HG\3\2"+
-		"\2\2IL\3\2\2\2JH\3\2\2\2JK\3\2\2\2KM\3\2\2\2LJ\3\2\2\2MN\5\6\4\2N\3\3"+
-		"\2\2\2OP\7\n\2\2P\5\3\2\2\2QR\7\13\2\2R\7\3\2\2\2ST\7\"\2\2TU\7\4\2\2"+
-		"UV\7\36\2\2V\t\3\2\2\2WX\7\4\2\2XY\7 \2\2Y\13\3\2\2\2Z[\7\24\2\2[\\\5"+
-		"\16\b\2\\^\7H\2\2]_\7\4\2\2^]\3\2\2\2^_\3\2\2\2_`\3\2\2\2`a\7\22\2\2a"+
-		"\r\3\2\2\2bc\t\2\2\2c\17\3\2\2\2de\7\37\2\2ef\7H\2\2f\21\3\2\2\2gh\7\34"+
-		"\2\2hi\7H\2\2i\23\3\2\2\2jk\7!\2\2kl\7H\2\2l\25\3\2\2\2mq\5\30\r\2nq\5"+
-		",\27\2oq\5.\30\2pm\3\2\2\2pn\3\2\2\2po\3\2\2\2q\27\3\2\2\2r{\5\"\22\2"+
-		"s{\5\32\16\2t{\5(\25\2u{\5\34\17\2v{\5\36\20\2w{\5 \21\2x{\5&\24\2y{\5"+
-		"$\23\2zr\3\2\2\2zs\3\2\2\2zt\3\2\2\2zu\3\2\2\2zv\3\2\2\2zw\3\2\2\2zx\3"+
-		"\2\2\2zy\3\2\2\2{\31\3\2\2\2|}\79\2\2}~\7\'\2\2~\u0081\7H\2\2\177\u0080"+
-		"\7(\2\2\u0080\u0082\7H\2\2\u0081\177\3\2\2\2\u0082\u0083\3\2\2\2\u0083"+
-		"\u0081\3\2\2\2\u0083\u0084\3\2\2\2\u0084\u0085\3\2\2\2\u0085\u0086\7&"+
-		"\2\2\u0086\u0087\7A\2\2\u0087\u0088\7H\2\2\u0088\33\3\2\2\2\u0089\u008a"+
-		"\7:\2\2\u008a\u008b\7\'\2\2\u008b\u008c\7H\2\2\u008c\u008d\7(\2\2\u008d"+
-		"\u008e\7H\2\2\u008e\u008f\7&\2\2\u008f\35\3\2\2\2\u0090\u0091\7\63\2\2"+
-		"\u0091\u0092\7\'\2\2\u0092\u0093\7H\2\2\u0093\u0094\7&\2\2\u0094\37\3"+
-		"\2\2\2\u0095\u0096\7;\2\2\u0096\u0097\7\'\2\2\u0097\u0098\7H\2\2\u0098"+
-		"\u0099\7&\2\2\u0099!\3\2\2\2\u009a\u009b\7\66\2\2\u009b\u009c\7\'\2\2"+
-		"\u009c\u009d\7H\2\2\u009d\u009e\7(\2\2\u009e\u009f\7H\2\2\u009f\u00a0"+
-		"\7&\2\2\u00a0#\3\2\2\2\u00a1\u00a2\7\35\2\2\u00a2\u00a3\7H\2\2\u00a3%"+
-		"\3\2\2\2\u00a4\u00a5\7?\2\2\u00a5\u00a6\7\'\2\2\u00a6\u00a7\7H\2\2\u00a7"+
-		"\u00a8\7(\2\2\u00a8\u00a9\7H\2\2\u00a9\u00aa\7&\2\2\u00aa\'\3\2\2\2\u00ab"+
-		"\u00ac\7@\2\2\u00ac\u00ad\7H\2\2\u00ad\u00ae\7\'\2\2\u00ae\u00b3\7H\2"+
-		"\2\u00af\u00b0\7(\2\2\u00b0\u00b2\7H\2\2\u00b1\u00af\3\2\2\2\u00b2\u00b5"+
-		"\3\2\2\2\u00b3\u00b1\3\2\2\2\u00b3\u00b4\3\2\2\2\u00b4\u00b6\3\2\2\2\u00b5"+
-		"\u00b3\3\2\2\2\u00b6\u00b7\7&\2\2\u00b7)\3\2\2\2\u00b8\u00b9\7H\2\2\u00b9"+
-		"\u00ba\t\3\2\2\u00ba\u00bb\7\5\2\2\u00bb+\3\2\2\2\u00bc\u00bd\7\21\2\2"+
-		"\u00bd\u00be\7\'\2\2\u00be\u00bf\5*\26\2\u00bf\u00c0\7&\2\2\u00c0\u00c2"+
-		"\7\16\2\2\u00c1\u00c3\5\26\f\2\u00c2\u00c1\3\2\2\2\u00c3\u00c4\3\2\2\2"+
-		"\u00c4\u00c2\3\2\2\2\u00c4\u00c5\3\2\2\2\u00c5\u00c6\3\2\2\2\u00c6\u00c7"+
-		"\7\17\2\2\u00c7-\3\2\2\2\u00c8\u00c9\7\r\2\2\u00c9\u00ca\7\'\2\2\u00ca"+
-		"\u00cb\5*\26\2\u00cb\u00cc\7&\2\2\u00cc\u00ce\7,\2\2\u00cd\u00cf\5\26"+
-		"\f\2\u00ce\u00cd\3\2\2\2\u00cf\u00d0\3\2\2\2\u00d0\u00ce\3\2\2\2\u00d0"+
-		"\u00d1\3\2\2\2\u00d1\u00d2\3\2\2\2\u00d2\u00d3\7-\2\2\u00d3/\3\2\2\2\16"+
-		"\66;@EJ^pz\u0083\u00b3\u00c4\u00d0";
+		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
+		"\4\32\t\32\4\33\t\33\4\34\t\34\3\2\3\2\3\2\3\2\6\2=\n\2\r\2\16\2>\3\2"+
+		"\6\2B\n\2\r\2\16\2C\3\2\6\2G\n\2\r\2\16\2H\3\2\6\2L\n\2\r\2\16\2M\3\2"+
+		"\7\2Q\n\2\f\2\16\2T\13\2\3\2\3\2\3\3\3\3\3\4\3\4\3\5\3\5\3\5\3\5\3\6\3"+
+		"\6\3\6\3\7\3\7\3\7\3\7\5\7g\n\7\3\7\3\7\3\b\3\b\3\t\3\t\3\t\3\n\3\n\3"+
+		"\n\3\13\3\13\3\13\3\f\3\f\3\f\5\fy\n\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r"+
+		"\5\r\u0083\n\r\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\17\3\17\3\17"+
+		"\3\17\3\17\3\17\3\17\3\17\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
+		"\7\20\u009e\n\20\f\20\16\20\u00a1\13\20\3\20\3\20\3\20\3\20\3\20\3\21"+
+		"\3\21\3\21\3\21\3\21\3\22\3\22\3\22\3\22\3\22\6\22\u00b2\n\22\r\22\16"+
+		"\22\u00b3\3\22\3\22\3\22\3\22\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\24"+
+		"\3\24\3\24\3\24\3\24\3\25\3\25\3\25\3\25\3\25\3\26\3\26\3\26\3\26\3\26"+
+		"\3\26\3\26\3\27\3\27\3\27\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\31\3\31"+
+		"\3\31\3\31\3\31\3\31\7\31\u00e2\n\31\f\31\16\31\u00e5\13\31\3\31\3\31"+
+		"\3\32\3\32\3\32\3\32\3\33\3\33\3\33\3\33\3\33\3\33\6\33\u00f3\n\33\r\33"+
+		"\16\33\u00f4\3\33\3\33\3\34\3\34\3\34\3\34\3\34\3\34\6\34\u00ff\n\34\r"+
+		"\34\16\34\u0100\3\34\3\34\3\34\2\2\35\2\4\6\b\n\f\16\20\22\24\26\30\32"+
+		"\34\36 \"$&(*,.\60\62\64\66\2\4\4\2\23\23\25\33\3\2BC\u00fd\28\3\2\2\2"+
+		"\4W\3\2\2\2\6Y\3\2\2\2\b[\3\2\2\2\n_\3\2\2\2\fb\3\2\2\2\16j\3\2\2\2\20"+
+		"l\3\2\2\2\22o\3\2\2\2\24r\3\2\2\2\26x\3\2\2\2\30\u0082\3\2\2\2\32\u0084"+
+		"\3\2\2\2\34\u008c\3\2\2\2\36\u0094\3\2\2\2 \u00a7\3\2\2\2\"\u00ac\3\2"+
+		"\2\2$\u00b9\3\2\2\2&\u00c0\3\2\2\2(\u00c5\3\2\2\2*\u00ca\3\2\2\2,\u00d1"+
+		"\3\2\2\2.\u00d4\3\2\2\2\60\u00db\3\2\2\2\62\u00e8\3\2\2\2\64\u00ec\3\2"+
+		"\2\2\66\u00f8\3\2\2\289\5\4\3\29:\5\b\5\2:<\5\n\6\2;=\5\f\7\2<;\3\2\2"+
+		"\2=>\3\2\2\2><\3\2\2\2>?\3\2\2\2?A\3\2\2\2@B\5\24\13\2A@\3\2\2\2BC\3\2"+
+		"\2\2CA\3\2\2\2CD\3\2\2\2DF\3\2\2\2EG\5\20\t\2FE\3\2\2\2GH\3\2\2\2HF\3"+
+		"\2\2\2HI\3\2\2\2IK\3\2\2\2JL\5\22\n\2KJ\3\2\2\2LM\3\2\2\2MK\3\2\2\2MN"+
+		"\3\2\2\2NR\3\2\2\2OQ\5\26\f\2PO\3\2\2\2QT\3\2\2\2RP\3\2\2\2RS\3\2\2\2"+
+		"SU\3\2\2\2TR\3\2\2\2UV\5\6\4\2V\3\3\2\2\2WX\7\n\2\2X\5\3\2\2\2YZ\7\13"+
+		"\2\2Z\7\3\2\2\2[\\\7#\2\2\\]\7\4\2\2]^\7\36\2\2^\t\3\2\2\2_`\7\4\2\2`"+
+		"a\7 \2\2a\13\3\2\2\2bc\7\24\2\2cd\5\16\b\2df\7I\2\2eg\7\4\2\2fe\3\2\2"+
+		"\2fg\3\2\2\2gh\3\2\2\2hi\7\22\2\2i\r\3\2\2\2jk\t\2\2\2k\17\3\2\2\2lm\7"+
+		"\37\2\2mn\7I\2\2n\21\3\2\2\2op\7\34\2\2pq\7I\2\2q\23\3\2\2\2rs\7!\2\2"+
+		"st\7I\2\2t\25\3\2\2\2uy\5\30\r\2vy\5\64\33\2wy\5\66\34\2xu\3\2\2\2xv\3"+
+		"\2\2\2xw\3\2\2\2y\27\3\2\2\2z\u0083\5*\26\2{\u0083\5\"\22\2|\u0083\5\60"+
+		"\31\2}\u0083\5$\23\2~\u0083\5&\24\2\177\u0083\5(\25\2\u0080\u0083\5.\30"+
+		"\2\u0081\u0083\5,\27\2\u0082z\3\2\2\2\u0082{\3\2\2\2\u0082|\3\2\2\2\u0082"+
+		"}\3\2\2\2\u0082~\3\2\2\2\u0082\177\3\2\2\2\u0082\u0080\3\2\2\2\u0082\u0081"+
+		"\3\2\2\2\u0083\31\3\2\2\2\u0084\u0085\7\66\2\2\u0085\u0086\7(\2\2\u0086"+
+		"\u0087\7I\2\2\u0087\u0088\7)\2\2\u0088\u0089\7\4\2\2\u0089\u008a\7\"\2"+
+		"\2\u008a\u008b\7\'\2\2\u008b\33\3\2\2\2\u008c\u008d\7\65\2\2\u008d\u008e"+
+		"\7(\2\2\u008e\u008f\7I\2\2\u008f\u0090\7)\2\2\u0090\u0091\7\4\2\2\u0091"+
+		"\u0092\7\"\2\2\u0092\u0093\7\'\2\2\u0093\35\3\2\2\2\u0094\u0095\78\2\2"+
+		"\u0095\u0096\7(\2\2\u0096\u0097\7I\2\2\u0097\u0098\7)\2\2\u0098\u0099"+
+		"\7I\2\2\u0099\u009a\7E\2\2\u009a\u009f\7I\2\2\u009b\u009c\7)\2\2\u009c"+
+		"\u009e\7I\2\2\u009d\u009b\3\2\2\2\u009e\u00a1\3\2\2\2\u009f\u009d\3\2"+
+		"\2\2\u009f\u00a0\3\2\2\2\u00a0\u00a2\3\2\2\2\u00a1\u009f\3\2\2\2\u00a2"+
+		"\u00a3\7D\2\2\u00a3\u00a4\7\4\2\2\u00a4\u00a5\7\36\2\2\u00a5\u00a6\7\'"+
+		"\2\2\u00a6\37\3\2\2\2\u00a7\u00a8\7?\2\2\u00a8\u00a9\7(\2\2\u00a9\u00aa"+
+		"\7I\2\2\u00aa\u00ab\7\'\2\2\u00ab!\3\2\2\2\u00ac\u00ad\7:\2\2\u00ad\u00ae"+
+		"\7(\2\2\u00ae\u00b1\7I\2\2\u00af\u00b0\7)\2\2\u00b0\u00b2\7I\2\2\u00b1"+
+		"\u00af\3\2\2\2\u00b2\u00b3\3\2\2\2\u00b3\u00b1\3\2\2\2\u00b3\u00b4\3\2"+
+		"\2\2\u00b4\u00b5\3\2\2\2\u00b5\u00b6\7\'\2\2\u00b6\u00b7\7B\2\2\u00b7"+
+		"\u00b8\7I\2\2\u00b8#\3\2\2\2\u00b9\u00ba\7;\2\2\u00ba\u00bb\7(\2\2\u00bb"+
+		"\u00bc\7I\2\2\u00bc\u00bd\7)\2\2\u00bd\u00be\7I\2\2\u00be\u00bf\7\'\2"+
+		"\2\u00bf%\3\2\2\2\u00c0\u00c1\7\64\2\2\u00c1\u00c2\7(\2\2\u00c2\u00c3"+
+		"\7I\2\2\u00c3\u00c4\7\'\2\2\u00c4\'\3\2\2\2\u00c5\u00c6\7<\2\2\u00c6\u00c7"+
+		"\7(\2\2\u00c7\u00c8\7I\2\2\u00c8\u00c9\7\'\2\2\u00c9)\3\2\2\2\u00ca\u00cb"+
+		"\7\67\2\2\u00cb\u00cc\7(\2\2\u00cc\u00cd\7I\2\2\u00cd\u00ce\7)\2\2\u00ce"+
+		"\u00cf\7I\2\2\u00cf\u00d0\7\'\2\2\u00d0+\3\2\2\2\u00d1\u00d2\7\35\2\2"+
+		"\u00d2\u00d3\7I\2\2\u00d3-\3\2\2\2\u00d4\u00d5\7@\2\2\u00d5\u00d6\7(\2"+
+		"\2\u00d6\u00d7\7I\2\2\u00d7\u00d8\7)\2\2\u00d8\u00d9\7I\2\2\u00d9\u00da"+
+		"\7\'\2\2\u00da/\3\2\2\2\u00db\u00dc\7A\2\2\u00dc\u00dd\7I\2\2\u00dd\u00de"+
+		"\7(\2\2\u00de\u00e3\7I\2\2\u00df\u00e0\7)\2\2\u00e0\u00e2\7I\2\2\u00e1"+
+		"\u00df\3\2\2\2\u00e2\u00e5\3\2\2\2\u00e3\u00e1\3\2\2\2\u00e3\u00e4\3\2"+
+		"\2\2\u00e4\u00e6\3\2\2\2\u00e5\u00e3\3\2\2\2\u00e6\u00e7\7\'\2\2\u00e7"+
+		"\61\3\2\2\2\u00e8\u00e9\7I\2\2\u00e9\u00ea\t\3\2\2\u00ea\u00eb\7\5\2\2"+
+		"\u00eb\63\3\2\2\2\u00ec\u00ed\7\21\2\2\u00ed\u00ee\7(\2\2\u00ee\u00ef"+
+		"\5\62\32\2\u00ef\u00f0\7\'\2\2\u00f0\u00f2\7\16\2\2\u00f1\u00f3\5\26\f"+
+		"\2\u00f2\u00f1\3\2\2\2\u00f3\u00f4\3\2\2\2\u00f4\u00f2\3\2\2\2\u00f4\u00f5"+
+		"\3\2\2\2\u00f5\u00f6\3\2\2\2\u00f6\u00f7\7\17\2\2\u00f7\65\3\2\2\2\u00f8"+
+		"\u00f9\7\r\2\2\u00f9\u00fa\7(\2\2\u00fa\u00fb\5\62\32\2\u00fb\u00fc\7"+
+		"\'\2\2\u00fc\u00fe\7-\2\2\u00fd\u00ff\5\26\f\2\u00fe\u00fd\3\2\2\2\u00ff"+
+		"\u0100\3\2\2\2\u0100\u00fe\3\2\2\2\u0100\u0101\3\2\2\2\u0101\u0102\3\2"+
+		"\2\2\u0102\u0103\7.\2\2\u0103\67\3\2\2\2\17>CHMRfx\u0082\u009f\u00b3\u00e3"+
+		"\u00f4\u0100";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

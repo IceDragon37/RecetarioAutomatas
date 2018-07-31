@@ -47,7 +47,7 @@ MEDIDAS_TIEMPO	 	: 'HRS' | 'S' | 'MIN'| 'DIAS'	  		;
 APARATO_TYPE	   	: 'APARATO'						        ;
 PORCION_TYPE		: 'PERSONA' | 'PERSONAS'				;
 UTENCILIO_TYPE		: 'UTENCILIO'							;
-
+MEDIDA_TEMPERATURA 	: '°C' | '°F'							;
 TIEMPODECLARACION	: 'TEMPS'						 	 	;
 
 
@@ -79,7 +79,7 @@ MAS			: 'AGREGAR'				    ;
 MENOS		: 'QUITAR'				    ;
 PARTIR		: 'PARTIR'				    ;
 PELAR		: 'PELAR'				    ;
-ENCEDER		: 'ENCENDER'			    ;
+ENCENDER	: 'ENCENDER'			    ;
 PREHOT		: 'PRECALENTAR'			    ;
 HERVIR 		: 'HERVIR'				    ;
 MACERAR		: 'MACERAR'				    ;
