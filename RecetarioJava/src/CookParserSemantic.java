@@ -8,6 +8,8 @@ import java.util.Map;
 class CookParserSemantic extends CookParserBaseVisitor<Object>{
 
 	protected Map<String, String> _vars = new HashMap<String, String>();
+	protected Map<String, String> _states = new HashMap<String, String>();
+	protected Map<String, ArrayList<String>> _mezc= new HashMap<String, ArrayList<String>>();
 
 	public CookParserSemantic() {}
 
@@ -89,7 +91,6 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		}
 		System.out.println("");
 		System.out.println("Los ingredientes son: ");
-		System.out.println("");
 		return null;
 	}
 
@@ -105,57 +106,18 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		//System.out.println( numero + " "+medicion);
         if (!_vars.containsKey(nombre)) {
         		_vars.put(nombre, tipo_ingrediente);
+        		_states.put(nombre, "CRUDO");
         		//System.out.println(String.format("\t%s %s;", tipo_ingrediente, nombre));
         } else {
         		throw new IllegalArgumentException("Ya tenemos la variable '" + nombre + "'");
         }
         	
         if(numero > 0 ) {
-        	System.out.println(numero+" "+medicion+" de "+nombre+".");
+        	System.out.println(numero+" "+medicion+" de "+nombre+" crudo.");
         }
         else {
         	System.out.println(nombre+" a gusto.");
         }
-		return null;
-	}
-
-	@Override
-	public Object visitRead(MileParserParser.ReadContext ctx) {
-		String id = ctx.ID().getText();
-		if (_vars.containsKey(id)) {
-			System.out.println(String.format("\tscanf(\"%s\", &%s);", getVarTypeMode(_vars.get(id)), id));
-		} else {
-    			throw new IllegalArgumentException("Variable '" + id + "' doesn't defined");
-		}
-		return null;
-	}
-
-	@Override
-	public Object visitPrint(MileParserParser.PrintContext ctx) {
-		if (ctx.ID().size() > 0) {
-			String id, format = "", args = "";
-			for (int i = 0; i < ctx.ID().size(); i++) {
-				id = ctx.ID(i).getText();
-				if (_vars.containsKey(id)) {
-					format += getVarTypeMode(_vars.get(id)) + " ";
-					args += id + ", ";
-				} else {
-	    				throw new IllegalArgumentException("Variable '" + id + "' doesn't defined");
-				}
-			}
-			System.out.println(String.format("\tprintf(\"%s\", %s);", format.substring(0, format.length() - 1), args.substring(0, args.length() - 2)));
-		} else {
-			String text = ctx.STRING().getText();
-			if(text != null) {
-				System.out.println(String.format("\tprintf(%s);", text));
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public Object visitIf_block(MileParserParser.If_blockContext ctx) {
-		// Completar
 		return null;
 	}
 
@@ -168,20 +130,132 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 			return "char";
 	}
 
-	private String getVarTypeMode(String var_type) {
-		if(var_type.equals("int"))
-			return "%d";
-		else if(var_type.equals("real"))
-			return "%f";
-		else
-			return "%s";
-	}
-
 	private String replace(String stat) {
 		stat.replace("=", "==");
 		stat.replace("<>", "!=");
 		stat.replace("AND", "&&");
 		stat.replace("OR", "&&");
 		return stat;
+	}
+	
+	@Override
+	public Object visitUtencilio(CookParserParser.UtencilioContext ctx) {
+        String nombre = ctx.PALABRA().getText();
+        if (!_vars.containsKey(nombre)) {
+                _vars.put(nombre, "UTENCILIO_TYPE");
+        } else {
+                throw new IllegalArgumentException("Ya tenemos la variable '" + nombre + "'");
+        }
+            System.out.println("Un " + nombre);
+        return null;
+    }
+	@Override
+	public Object visitAparato(CookParserParser.AparatoContext ctx) {
+        String nombre = ctx.PALABRA().getText();
+        if (!_vars.containsKey(nombre)) {
+                _vars.put(nombre, "APARATO_TYPE");
+        } else {
+                throw new IllegalArgumentException("Ya tenemos la variable '" + nombre + "'");
+        }
+            System.out.println("1 " + nombre);
+        return null;
+    }
+	
+	@Override
+	public Object visitRecipiente(CookParserParser.RecipienteContext ctx) {
+        String nombre = ctx.PALABRA().getText();
+        if (!_vars.containsKey(nombre)) {
+                _vars.put(nombre, "RECIPIENTE_TYPE");
+        } else {
+                throw new IllegalArgumentException("Ya tenemos la variable '" + nombre + "'");
+        }
+            System.out.println("1 " + nombre);
+        return null;
+	}
+	@Override
+	/**
+     * Sirve para encender algunos aparatos a una temperatura indicada.
+     */
+    public Object visitEncender(CookParserParser.EncenderContext ctx) {
+        String aparato = ctx.PALABRA().getText();
+        int numero = Integer.parseInt(ctx.NUMERO().getText());
+        String temperatura = ctx.MEDIDA_TEMPERATURA().getText();
+
+        System.out.println("Encender el "+aparato+" a "+numero+" "+temperatura);
+        return null;
+    }
+	@Override
+	public Object visitCortar(CookParserParser.CortarContext ctx) {
+        String utencilio = ctx.PALABRA(0).getText();
+        String ingrediente = ctx.PALABRA(1).getText();
+        if (!_vars.get(ingrediente).equals("UTENCILIO_TYPE") && !_vars.get(ingrediente).equals("APARATO_TYPE") && !_vars.get(ingrediente).equals("RECIPIENTE_TYPE") && !_vars.get(ingrediente).equals("LIQUID_TYPE")) {
+            System.out.println("Corte el ingrediente "+ingrediente+" con el utencilio "+utencilio);
+        }
+        else {
+            throw new IllegalArgumentException("La variable '" + ingrediente + "' no se puede cortar");
+        }
+        return null;
+
+	}
+
+	
+	@Override
+	public 	String visitHervir(CookParserParser.HervirContext ctx) {
+		String recipiente = ctx.PALABRA(1).getText();
+		String item = ctx.PALABRA(0).getText();
+		Boolean mezc=false;
+		//Veo si esta la variable y si es recipiente
+		if(!_vars.get(recipiente).equals("RECIPIENTE_TYPE")) {
+    		throw new IllegalArgumentException("No tenemos un recipiente llamado "+recipiente);
+		}
+		//veo si esta el item a hervir
+		if (!_vars.containsKey(item)) {
+    		throw new IllegalArgumentException("No tenemos un liquido llamado "+item);
+		}
+		else {
+			//veo si no existe la mezcla o no es liquido
+			if(!(_mezc.containsKey(item) || _vars.get(item).equals("LIQUID_TYPE"))) {
+	    		throw new IllegalArgumentException("No tenemos un liquido o mezcla llamado "+item+". ");
+			}
+			else {
+				//si es mezcladebe tener liquido		
+				if(_mezc.containsKey(item)) {
+					mezc=true;//flag para ser flojo
+					ArrayList<String> items_mezcla= _mezc.get(item);
+					Boolean flag = false;//falg es true si tiene un liquido al menos
+					for(String id: items_mezcla) {
+						if(!_vars.get(id).equals("LIQUID_TYPE"))
+							flag=true;
+					}
+					if(!flag)
+						throw new IllegalArgumentException("La mezcla "+item+" no tiene líquidos, no se puede hervir");
+				
+				
+				}
+				
+				//veo si es liquido
+				else {
+					if(!_vars.get(item).equals("LIQUID_TYPE")) {
+						throw new IllegalArgumentException(item + " no es un liquido");
+					}
+				}
+			}
+		}
+		if(mezc) {
+			ArrayList<String> items_mezcla= _mezc.get(item);
+			for(String id: items_mezcla) {
+//				if(_vars.get(id).equals("LIQUID_TYPE"))
+//					_states.put(id, "BOUILLE");
+//				else
+					_states.put(id, "CUIT");
+			}
+			System.out.println("Se ha Cocido la mezcla "+item);
+		}
+		else {
+			_states.put(item, "BOUILLE");
+			System.out.println("Se ha hervido el/la "+item);
+
+		}
+		return null;
 	}
 }
