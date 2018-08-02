@@ -32,6 +32,7 @@ SI	 		: 'SI'			;
  
 MEDICION 		    : 'ONZ.' | 'gr.' | 'cc.' | 'tbsp' | 'PIECES'| 'grs.' | 'a_gusto'	;
 CONDIMENTO_TYPE		: 'CONDIMENTOS'					        ;
+DECLARACION			: 'INGREDIENT'					        ;
 CARNE_TYPE 		   	: 'CARNE'						        ;
 VEGETAL_TYPE 	   	: 'VEGETAL'					       	    ;
 LEGUMBRE_TYPE 	 	: 'LEGUMBRE'					        ;
@@ -87,7 +88,7 @@ MOLER		: 'MOLER'				    ;
 SERVIR		: 'SERVIR'				    ;
 UNTAR	  	: 'UNTAR' | 'ENGRASAR'		;
 EMPANIZAR	: 'EMPANIZAR'			    ;
-RALLAR		: 'RALLAR'					; 
+RALLAR		: 'RALLAR'					;
 CORTAR		: 'CORTAR'					;
 
 //---POR LOS LOLES, CORTA TODO---

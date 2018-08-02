@@ -2,26 +2,26 @@ COMMENCER_LA_RECETTE
 
 	TEMPS 40 MIN
 	17 PERSONAS
-	VEGETAL papa 1000 grs.
-	LACTEO mantequilla 1 tbsp
-	LACTEO leche 200 cc.
-	CONDIMENTOS pimienta a_gusto
-	CONDIMENTOS sal a_gusto
-	LIQUIDO agua 1000 cc.
+	INGREDIENT VEGETAL papa 1000 grs.
+	INGREDIENT LACTEO mantequilla 1 tbsp
+	INGREDIENT LACTEO leche 200 cc.
+	INGREDIENT CONDIMENTOS pimienta a_gusto
+	INGREDIENT CONDIMENTOS sal a_gusto
+	INGREDIENT LIQUIDO agua 1000 cc.
 
 	UTENCILIO pisapapas
 	UTENCILIO cuchillo
 
 	APARATO cocina
-
+  
 	RECIPIENTE olla
-
+ 
 	PELAR(papa)
 	HERVIR(agua,olla)
-	SI(agua = BOUILLE)FAIRE
+	SI(agua = BOUILLE)FAIRE 
 		MEZCLAR(agua,papa) = aguapapa
 		HERVIR(aguapapa,olla)
-		ï¿½DUELO-A-MUERTE-CON-CUCHILLOS? cuchillo (aguapapa,mantequilla)
+		¿DUELO-A-MUERTE-CON-CUCHILLOS? cuchillo (aguapapa,mantequilla)
 		HERVIR(leche,olla)
 		MOLER(aguapapa,pisapapa)
 		MEZCLAR(aguapapa,mantequilla,leche,sal,pimienta) = pure

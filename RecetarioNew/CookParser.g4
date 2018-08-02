@@ -19,10 +19,10 @@ porciones	: NUMERO PORCION_TYPE;
 
 //-------------------------DECLARACION DE VARIABLES--------------------------
 
-ingrediente		: tipo_ingrediente PALABRA NUMERO? MEDICION 
+ingrediente		: DECLARACION tipo_ingrediente PALABRA NUMERO? MEDICION 
 							;
 
-tipo_ingrediente	: CARNE_TYPE 
+tipo_ingrediente	: CARNE_TYPE
 					| PESCADO_TYPE 
 					| CONDIMENTO_TYPE
 					| VEGETAL_TYPE
