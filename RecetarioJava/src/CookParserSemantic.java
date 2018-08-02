@@ -9,19 +9,13 @@ public class CookParserSemantic extends CookParserBaseVisitor<Object>{
 
 	@Override
     public Object visitIniciar_cocina(CookParserParser.Iniciar_cocinaContext ctx) { 
-<<<<<<< HEAD
+
 		String iniciar = ctx.PREPARARINGREDIENTES().getText();
 		
     	if(iniciar.equals("COMMENCER_LA_RECETTE"))   { 
 			System.out.println("#include <stdio.h>");
 			System.out.println("void main() {");
-=======
-		System.out.println("entre a iniciar");	
-		if(ctx.PREPARARINGREDIENTES().getText().equals("COMMENCER_LA_RECETTE") ){
-	    		System.out.println("Para comenzar la receta se necesitan:");
-			System.out.println(" ");
 
->>>>>>> e95f6637c733528c62d4075ca74caf7f3ab12c29
 		}
 	    return null;
 	}
@@ -173,18 +167,5 @@ public class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		stat.replace("OR", "&&");
 		return stat;
 	}
-<<<<<<< HEAD
+
 	*/
-=======
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
->>>>>>> e95f6637c733528c62d4075ca74caf7f3ab12c29
-}

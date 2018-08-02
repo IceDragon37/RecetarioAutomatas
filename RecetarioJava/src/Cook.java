@@ -1,4 +1,3 @@
-
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -20,16 +19,11 @@ public class Cook {
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 			CookParserParser parser = new CookParserParser(tokens);
 			ParseTree tree = parser.receta();
-<<<<<<< HEAD:RecetarioJava/src/CookLen.java
+
 			
 			CookParserSemantic semantic = new CookParserSemantic();
 			semantic.visit(tree);
 			
-=======
-			CookParserSemantic sem = new CookParserSemantic();
-			sem.visit(tree);
-			System.out.println("Done");
->>>>>>> e95f6637c733528c62d4075ca74caf7f3ab12c29:RecetarioJava/src/Cook.java
 		} catch (Exception e) {
 			System.err.print(e);
 		}
