@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class CookParserSemantic extends CookParserBaseVisitor<Object>{
+public class CookParserSemantic extends CookParserBaseVisitor<Object>{
 
 	protected Map<String, String> _vars = new HashMap<String, String>();
 
@@ -13,7 +13,8 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 
 	@Override
     public Object visitIniciar_cocina(CookParserParser.Iniciar_cocinaContext ctx) { 
-	    	if(ctx.PREPARARINGREDIENTES().getText().equals("COMMENCER_LA_RECETTE"))    {
+		System.out.println("entre a iniciar");	
+		if(ctx.PREPARARINGREDIENTES().getText().equals("COMMENCER_LA_RECETTE") ){
 	    		System.out.println("Para comenzar la receta se necesitan:");
 			System.out.println(" ");
 
@@ -31,30 +32,20 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 	}
 	
 	@Override
-	public Object visitDeclaration(MileParserParser.DeclarationContext ctx) {
-		String var_type = ctx.variable_type().getText();
-        String id = ctx.ID().getText();
-
-        if (!_vars.containsKey(id)) {
-        		var_type = getVarType(var_type);
-        		_vars.put(id, var_type);
-        		System.out.println(String.format("\t%s %s;", var_type, id));
-        } else {
-        		throw new IllegalArgumentException("Variable '" + id + "' already exist");
-        }
+	public Object visitTiempo(CookParserParser.TiempoContext ctx) {
+		String tiempo = ctx.TIEMPODECLARACION().getText();
+        int numero = Integer.parseInt(ctx.NUMERO().getText());
+        String medida = ctx.MEDIDAS_TIEMPO().getText();
         
+        System.out.println("El tiempo promedio para la elaboracion de la receta es: "+ numero + " "+medida);
 		return null;
 	}
 
 	@Override
-	public Object visitRead(MileParserParser.ReadContext ctx) {
-		String id = ctx.ID().getText();
-		if (_vars.containsKey(id)) {
-			System.out.println(String.format("\tscanf(\"%s\", &%s);", getVarTypeMode(_vars.get(id)), id));
-		} else {
-    			throw new IllegalArgumentException("Variable '" + id + "' doesn't defined");
-		}
-		return null; 
+	public Object visitPorciones(CookParserParser.PorcionesContext ctx) {
+		int numero = Integer.parseInt(ctx.NUMERO().getText());
+		String porcionType = ctx.PORCION_TYPE().getText();
+		//Declarar variable, revisar las weas del profe  
 	}
 	
 	@Override
@@ -111,4 +102,14 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		stat.replace("OR", "&&");
 		return stat;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

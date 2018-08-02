@@ -3,7 +3,7 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-public class CookLen {
+public class Cook {
 	private static String load(String preCodeFile) 
 			  throws java.io.IOException {
 		return new String(
@@ -21,6 +21,8 @@ public class CookLen {
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 			CookParserParser parser = new CookParserParser(tokens);
 			ParseTree tree = parser.receta();
+			CookParserSemantic sem = new CookParserSemantic();
+			sem.visit(tree);
 			System.out.println("Done");
 		} catch (Exception e) {
 			System.err.print(e);
