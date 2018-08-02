@@ -12,7 +12,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 	public CookParserSemantic() {}
 
 	@Override
-    public Object visitIniciar_cocina(CookParserParser.Iniciar_cocinaContext ctx) { 
+    public Object visitIniciar_cocina(CookParserParser.Iniciar_cocinaContext ctx) {
 	    	if(ctx.PREPARARINGREDIENTES().getText().equals("COMMENCER_LA_RECETTE"))    {
 	    		System.out.println("Para comenzar la receta se necesitan:");
 			System.out.println(" ");
@@ -20,7 +20,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		}
 	    return null;
 	}
-	
+
 	@Override
 	public Object visitFinalizar_cocina(CookParserParser.Finalizar_cocinaContext ctx) {
 	    	if(ctx.FINCOCINA().getText().equals("ACHEVEMENT_RECETTE"))    {
@@ -29,7 +29,24 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		}
 	    return null;
 	}
-	
+
+	@Override
+	public Object visitTiempo(CookParserParser.TiempoContext ctx) {
+		String tiempo = ctx.TIEMPODECLARACION().getText();
+        int numero = Integer.parseInt(ctx.NUMERO().getText());
+        String medida = ctx.MEDIDAS_TIEMPO().getText();
+
+        System.out.println("El tiempo promedio para la elaboracion de la receta es: "+ numero + " "+medida);
+		return null;
+	}
+
+	@Override
+	public Object visitPorciones(CookParserParser.PorcionesContext ctx) {
+		int numero = Integer.parseInt(ctx.NUMERO().getText());
+		String porcionType = ctx.PORCION_TYPE().getText();
+		//Declarar variable, revisar las weas del profe
+	}
+
 	@Override
 	public Object visitDeclaration(MileParserParser.DeclarationContext ctx) {
 		String var_type = ctx.variable_type().getText();
@@ -42,7 +59,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
         } else {
         		throw new IllegalArgumentException("Variable '" + id + "' already exist");
         }
-        
+
 		return null;
 	}
 
@@ -54,9 +71,9 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		} else {
     			throw new IllegalArgumentException("Variable '" + id + "' doesn't defined");
 		}
-		return null; 
+		return null;
 	}
-	
+
 	@Override
 	public Object visitPrint(MileParserParser.PrintContext ctx) {
 		if (ctx.ID().size() > 0) {
@@ -77,15 +94,15 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 				System.out.println(String.format("\tprintf(%s);", text));
 			}
 		}
-		return null;  
+		return null;
 	}
-	
+
 	@Override
 	public Object visitIf_block(MileParserParser.If_blockContext ctx) {
 		// Completar
-		return null; 
+		return null;
 	}
-	
+
 	private String getVarType(String var_type) {
 		if(var_type.equals("entero") || var_type.equals("logico"))
 			return "int";
@@ -94,7 +111,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		else
 			return "char";
 	}
-	
+
 	private String getVarTypeMode(String var_type) {
 		if(var_type.equals("int"))
 			return "%d";
@@ -103,7 +120,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		else
 			return "%s";
 	}
-	
+
 	private String replace(String stat) {
 		stat.replace("=", "==");
 		stat.replace("<>", "!=");
