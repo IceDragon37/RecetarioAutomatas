@@ -89,6 +89,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		}
 		System.out.println("");
 		System.out.println("Los ingredientes son: ");
+		System.out.println("");
 		return null;
 	}
 

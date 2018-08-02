@@ -49,12 +49,6 @@ MEDIDA_TEMPERATURA 	: '°C' | '°F'							;
 TIEMPODECLARACION	: 'TEMPS'						 	 	;
 
 
-
-CUCHILLO	:	UTENCILIO_TYPE;
- 
-ESCRIBIR 	: 'ANOTAR'	  ;
-LEER 		: 'INGRESE'	  ;
-
 PAR_DE 		: ')';
 PAR_IZ		: '(';
 COMA		: ',';
@@ -69,7 +63,6 @@ LLAVEDER	: '}';
 
 AND			: 'Y';
 OR 			: 'O';
-
 
 //-----------FUNCIONES------------
 
