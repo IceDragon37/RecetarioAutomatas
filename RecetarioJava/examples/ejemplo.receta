@@ -8,7 +8,7 @@ COMMENCER_LA_RECETTE
 	CONDIMENTOS pimienta a_gusto
 	CONDIMENTOS sal a_gusto
 	LIQUIDO agua 1000 cc.
-
+		
 	UTENCILIO pisapapas
 	UTENCILIO cuchillo
 

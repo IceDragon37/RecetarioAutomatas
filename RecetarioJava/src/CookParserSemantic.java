@@ -30,6 +30,43 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 	    return null;
 	}
 
+	/**
+	 * FUNCION QUE DEVUELVE LE TIPO DE INGREDIENTE SOLICITADO.
+	 * @return
+	 */
+	public String getTipo_ingrediente(String tipo) {
+
+
+		if(tipo.equals("CARNE"))
+			return "CARNE_TYPE";
+
+		if(tipo.equals("PESCADO"))
+			return "PESCADO_TYPE";
+
+		if(tipo.equals("CONDIMENTOS"))
+			return "CONDIMENTO_TYPE";
+
+		if(tipo.equals("VEGETAL"))
+			return "VEGETAL_TYPE";
+
+		if(tipo.equals("LEGUMBRE"))
+			return "LEGUMBRE_TYPE";
+
+		if(tipo.equals("LIQUIDO"))
+			return "LIQUID_TYPE";
+
+		if(tipo.equals("LACTEO"))
+			return "LACTEO_TYPE";
+
+		if(tipo.equals("CEREAL"))
+			return "CEREAL_TYPE";
+
+		return null;
+
+	}
+
+
+
 	@Override
 	public Object visitTiempo(CookParserParser.TiempoContext ctx) {
 		String tiempo = ctx.TIEMPODECLARACION().getText();
@@ -44,22 +81,40 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 	public Object visitPorciones(CookParserParser.PorcionesContext ctx) {
 		int numero = Integer.parseInt(ctx.NUMERO().getText());
 		String porcionType = ctx.PORCION_TYPE().getText();
-		//Declarar variable, revisar las weas del profe
+		if(porcionType.equals("PERSONAS")) {
+			System.out.println("La receta esta contemplada para preparar "+numero+" platos");
+		}
+		else {
+			System.out.println("La receta esta contemplada para preparar "+numero+" plato");
+		}
+		System.out.println("");
+		System.out.println("Los ingredientes son: ");
+		return null;
 	}
 
 	@Override
-	public Object visitDeclaration(MileParserParser.DeclarationContext ctx) {
-		String var_type = ctx.variable_type().getText();
-        String id = ctx.ID().getText();
-
-        if (!_vars.containsKey(id)) {
-        		var_type = getVarType(var_type);
-        		_vars.put(id, var_type);
-        		System.out.println(String.format("\t%s %s;", var_type, id));
+	public Object visitIngrediente(CookParserParser.IngredienteContext ctx) {
+		String tipo_ingrediente = getTipo_ingrediente(ctx.tipo_ingrediente().getText());
+		String nombre = ctx.PALABRA().getText();
+		String medicion = ctx.MEDICION().getText();
+		int numero = 0;
+		if(ctx.NUMERO() != null) {
+			numero = Integer.parseInt(ctx.NUMERO().getText());
+		}
+		//System.out.println( numero + " "+medicion);
+        if (!_vars.containsKey(nombre)) {
+        		_vars.put(nombre, tipo_ingrediente);
+        		//System.out.println(String.format("\t%s %s;", tipo_ingrediente, nombre));
         } else {
-        		throw new IllegalArgumentException("Variable '" + id + "' already exist");
+        		throw new IllegalArgumentException("Ya tenemos la variable '" + nombre + "'");
         }
-
+        	
+        if(numero > 0 ) {
+        	System.out.println(numero+" "+medicion+" de "+nombre+".");
+        }
+        else {
+        	System.out.println(nombre+" a gusto.");
+        }
 		return null;
 	}
 
