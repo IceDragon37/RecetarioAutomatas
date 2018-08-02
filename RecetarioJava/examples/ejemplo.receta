@@ -18,6 +18,7 @@ COMMENCER_LA_RECETTE
 
 	PELAR(papa)
 	HERVIR(agua,olla)
+	ENCENDER(olla,12 F)
 	SI(agua = BOUILLE)FAIRE
 		MEZCLAR(agua,papa) = aguapapa
 		HERVIR(aguapapa,olla)

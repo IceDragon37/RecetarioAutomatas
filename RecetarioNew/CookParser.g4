@@ -54,13 +54,16 @@ operaciones		: hervir
 				| servir 
 				| cortar
 				| declararcorte
-				;
+				| encender
+				| precalentar
+				| macerar
+				| rallar
+				; 
 
 
+precalentar : PREHOT PAR_IZ PALABRA COMA NUMERO MEDIDA_TEMPERATURA PAR_DE ; 
 
-precalentar : PREHOT PAR_IZ PALABRA COMA NUMERO MEDIDA_TEMPERATURA PAR_DE ;
-
-encender: ENCENDER PAR_IZ PALABRA COMA NUMERO MEDIDA_TEMPERATURA PAR_DE ; 
+encender: ENCENDER PAR_IZ PALABRA COMA NUMERO MEDIDA_TEMPERATURA PAR_DE ; //Sirve para encender algunos aparatos a una temperatura indicada.
 
 macerar	: MACERAR PAR_IZ PALABRA COMA PALABRA MENOR PALABRA (COMA PALABRA)* MAYOR NUMERO MEDIDAS_TIEMPO PAR_DE ; //FUENTE EN LA QUE SE AMACERA + LIQUIDO QUE SE AMACERA + INGREDIENTES + TIEMPO 
 
