@@ -1,8 +1,4 @@
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 class CookParserSemantic extends CookParserBaseVisitor<Object>{
@@ -13,25 +9,68 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 
 	@Override
     public Object visitIniciar_cocina(CookParserParser.Iniciar_cocinaContext ctx) { 
-	    	if(ctx.PREPARARINGREDIENTES().getText().equals("COMMENCER_LA_RECETTE"))    {
-	    		System.out.println("Para comenzar la receta se necesitan:");
-			System.out.println(" ");
-
+		String iniciar = ctx.PREPARARINGREDIENTES().getText();
+		
+    	if(iniciar.equals("COMMENCER_LA_RECETTE"))   { 
+			System.out.println("#include <stdio.h>");
+			System.out.println("void main() {");
 		}
 	    return null;
 	}
 	
 	@Override
 	public Object visitFinalizar_cocina(CookParserParser.Finalizar_cocinaContext ctx) {
-	    	if(ctx.FINCOCINA().getText().equals("ACHEVEMENT_RECETTE"))    {
-	    		System.out.println("ULALAAAA!!");
-			System.out.println("TASTY");
+		String finalizar = ctx.FINCOCINA().getText();
+    	if(finalizar.equals("ACHEVEMENT_RECETTE"))    {
+    		System.out.println("}");
 		}
 	    return null;
 	}
 	
+	public Object visitTiempo(CookParserParser.TiempoContext ctx) {
+		String declarar = ctx.TIEMPODECLARACION().getText();
+		String numero = ctx.NUMERO().getText();
+		String medida = ctx.MEDIDAS_TIEMPO().getText();
+		
+		if(declarar.equals("TEMPS")) {
+			System.out.println("\t int tiempo_receta = "+numero+";");
+			System.out.println("\t String medida_tiempo = "+medida+";");
+		}
+		return null;
+	}
+	
+	public Object visitPorciones(CookParserParser.PorcionesContext ctx) {
+		String numero = ctx.NUMERO().getText();
+		String tipo = ctx.PORCION_TYPE().getText();
+		
+		System.out.println("\t String porciones = "+numero+" "+tipo+";");
+		
+		return null;
+	}
+	
+	
+	
+	private String obtenerVarTiempo(String var_tiempo) {
+		if(var_tiempo.equals("HRS"))
+			return "%d";
+		else if(var_tiempo.equals("real"))
+			return "%f";
+		else
+			return "%s";
+	}
+	
+	
+	
+	
+	
+/*	
+	
+	
+	
+	
+	
 	@Override
-	public Object visitDeclaration(MileParserParser.DeclarationContext ctx) {
+	public Object visitDeclaration(CookParserParser.DeclarationContext ctx) {
 		String var_type = ctx.variable_type().getText();
         String id = ctx.ID().getText();
 
@@ -47,7 +86,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 	}
 
 	@Override
-	public Object visitRead(MileParserParser.ReadContext ctx) {
+	public Object visitRead(CookParserParser.ReadContext ctx) {
 		String id = ctx.ID().getText();
 		if (_vars.containsKey(id)) {
 			System.out.println(String.format("\tscanf(\"%s\", &%s);", getVarTypeMode(_vars.get(id)), id));
@@ -58,7 +97,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 	}
 	
 	@Override
-	public Object visitPrint(MileParserParser.PrintContext ctx) {
+	public Object visitPrint(CookParserParser.PrintContext ctx) {
 		if (ctx.ID().size() > 0) {
 			String id, format = "", args = "";
 			for (int i = 0; i < ctx.ID().size(); i++) {
@@ -81,7 +120,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 	}
 	
 	@Override
-	public Object visitIf_block(MileParserParser.If_blockContext ctx) {
+	public Object visitIf_block(CookParserParser.If_blockContext ctx) {
 		// Completar
 		return null; 
 	}
@@ -111,4 +150,5 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		stat.replace("OR", "&&");
 		return stat;
 	}
+	*/
 }

@@ -15,13 +15,15 @@ public class CookLen {
 	public static void main(String[] args) {
 		try {
 			System.out.println("Scanning file...");
-			ANTLRInputStream input = new ANTLRInputStream (
-					load("examples/ejemplo.receta")) ;
+			ANTLRInputStream input = new ANTLRInputStream (load("examples/ejemplo.receta")) ;
 			CookParserLexer lexer = new CookParserLexer(input);
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 			CookParserParser parser = new CookParserParser(tokens);
 			ParseTree tree = parser.receta();
-			System.out.println("Done");
+			
+			CookParserSemantic semantic = new CookParserSemantic();
+			semantic.visit(tree);
+			
 		} catch (Exception e) {
 			System.err.print(e);
 		}
