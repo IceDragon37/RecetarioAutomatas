@@ -21,8 +21,11 @@ public class Cook {
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 			CookParserParser parser = new CookParserParser(tokens);
 			ParseTree tree = parser.receta();
+			
+			//invocacion a la clase semantica
 			CookParserSemantic sem = new CookParserSemantic();
 			sem.visit(tree);
+			
 			System.out.println("Done");
 		} catch (Exception e) {
 			System.err.print(e);

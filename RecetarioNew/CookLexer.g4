@@ -32,7 +32,6 @@ SI	 		: 'SI'			;
  
 MEDICION 		    : 'ONZ.' | 'gr.' | 'cc.' | 'tbsp' | 'PIECES'| 'grs.' | 'a_gusto'	;
 CONDIMENTO_TYPE		: 'CONDIMENTOS'					        ;
-DECLARACION			: 'INGREDIENT'					        ;
 CARNE_TYPE 		   	: 'CARNE'						        ;
 VEGETAL_TYPE 	   	: 'VEGETAL'					       	    ;
 LEGUMBRE_TYPE 	 	: 'LEGUMBRE'					        ;
