@@ -463,5 +463,48 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		return true;
 	}
 
-	
+	@Override
+	public Object visitOperaciones(CookParserParser.OperacionesContext ctx) {
+		//veo si existe el contexto de alguna de las operaciones y llama el visit de la accion.
+		if(!ctx.hervir().isEmpty()){
+			visitHervir(ctx.hervir());
+		}
+		if(!ctx.mezclar().isEmpty()){
+			visitMezclar(ctx.mezclar());
+		}
+		if(!ctx.yo_creo_que_van_a_pelear_con_cuchillos().isEmpty()){
+			visitYo_creo_que_van_a_pelear_con_cuchillos(ctx.yo_creo_que_van_a_pelear_con_cuchillos());
+		}
+		if(!ctx.moler().isEmpty()){
+			visitMoler(ctx.moler());
+		}
+		if(!ctx.pelar().isEmpty()){
+			System.out.println("Linea 482");//testing
+
+			visitPelar(ctx.pelar());
+		}
+		if(!ctx.servir().isEmpty()){
+			visitServir(ctx.servir());
+		}
+		if(!ctx.cortar().isEmpty()){
+			visitCortar(ctx.cortar());
+		}
+		if(!ctx.declararcorte().isEmpty()){
+			visitDeclararcorte(ctx.declararcorte());
+		}
+		if(!ctx.encender().isEmpty()){
+			visitEncender(ctx.encender());
+		}
+		if(!ctx.precalentar().isEmpty()){
+			visitPrecalentar(ctx.precalentar());
+		}
+		if(!ctx.macerar().isEmpty()){
+			visitMacerar(ctx.macerar());
+		}
+		if(!ctx.rallar().isEmpty()){
+			visitRallar(ctx.rallar());
+		}
+		
+		return null;
+	}
 }
