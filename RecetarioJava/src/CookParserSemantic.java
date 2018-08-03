@@ -184,18 +184,33 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
         return null;
     }
 	@Override
-	public Object visitCortar(CookParserParser.CortarContext ctx) {
-        String utencilio = ctx.PALABRA(0).getText();
-        String ingrediente = ctx.PALABRA(1).getText();
-        if (!_vars.get(ingrediente).equals("UTENCILIO_TYPE") && !_vars.get(ingrediente).equals("APARATO_TYPE") && !_vars.get(ingrediente).equals("RECIPIENTE_TYPE") && !_vars.get(ingrediente).equals("LIQUID_TYPE")) {
-            System.out.println("Corte el ingrediente "+ingrediente+" con el utencilio "+utencilio);
+    public Object visitCortar(CookParserParser.CortarContext ctx) {
+        String ingrediente = ctx.PALABRA(0).getText();
+        String tipo_corte = ctx.PALABRA(1).getText();
+        if(!_vars.containsKey(ingrediente)) {
+            throw new IllegalArgumentException("No esta declarada la variable '"+ingrediente+"'");
         }
-        else {
-            throw new IllegalArgumentException("La variable '" + ingrediente + "' no se puede cortar");
+        else if(_vars.get(ingrediente).equals("CORTE_TYPE") 
+                || _vars.get(ingrediente).equals("UTENCILIO_TYPE") 
+                || _vars.get(ingrediente).equals("APARATO_TYPE") 
+                || _vars.get(ingrediente).equals("RECIPIENTE_TYPE") 
+                || _vars.get(ingrediente).equals("LIQUID_TYPE")) {
+                    throw new IllegalArgumentException("'"+ingrediente+"' No es un tipo de variable ingrediente");
         }
+
+
+        if(!_vars.containsKey(tipo_corte)) {
+            throw new IllegalArgumentException("No esta declarada la variable '"+tipo_corte+"'");
+        }
+        else if(!_vars.get(tipo_corte).equals("CORTE_TYPE")) {
+            throw new IllegalArgumentException("'"+tipo_corte+"' No es un tipo de variable CORTE");
+        }
+
+        System.out.println("Corte el ingrediente "+ingrediente+" con el metodo "+tipo_corte);
+
         return null;
 
-	}
+    }
 
 	
 	@Override
@@ -240,24 +255,24 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 				}
 			}
 		}
-		if(mezc) {
+		if(mezc) {//las mezclas se cocinan
 			ArrayList<String> items_mezcla= _mezc.get(item);
 			for(String id: items_mezcla) {
 //				if(_vars.get(id).equals("LIQUID_TYPE"))
 //					_states.put(id, "BOUILLE");
 //				else
-					_states.put(id, "CUIT");
+					_states.put(id, "COCIDO");
 			}
 			System.out.println("Se ha Cocido la mezcla "+item);
 		}
-		else {
-			_states.put(item, "BOUILLE");
+		else {//los liquidos solos se hierven
+			_states.put(item, "HERVIDO");
 			System.out.println("Se ha hervido el/la "+item);
 
 		}
 		return null;
 	}
-
+	@Override
 	public Object visitMoler(CookParserParser.MolerContext ctx) {
 		String item = ctx.PALABRA(0).getText();
 		String utencilio = ctx.PALABRA(1).getText();
@@ -284,7 +299,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		return null;
 	}
 	
-	
+	@Override
 	public Object visitServir(CookParserParser.ServirContext ctx) {
 		String item = ctx.PALABRA().getText();
 		
@@ -300,7 +315,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		
 		return null;
 	}
-
+	@Override
 	public Object visitDeclararcorte(CookParserParser.DeclararcorteContext ctx) {
 		String corte = ctx.PALABRA().getText();
 		
@@ -313,7 +328,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		
 		return null;
 	}
-	
+	@Override
 	public Object visitPrecalentar(CookParserParser.PrecalentarContext ctx) {
 		String item = ctx.PALABRA().getText();
 		int numero = Integer.parseInt(ctx.NUMERO().getText());
@@ -328,7 +343,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		System.out.println("Precalentar el/la "+item+" a "+numero+" grado(s) "+temperatura);
 		return null;
 	}
-	
+	@Override
 	public Object visitMacerar(CookParserParser.MacerarContext ctx) {
 		String recipiente = ctx.PALABRA(0).getText();
 		String liquido = ctx.PALABRA(1).getText();
@@ -370,7 +385,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		return null;
 	}
 	
-	
+	@Override
 	public Object visitYo_creo_que_van_a_pelear_con_cuchillos(CookParserParser.Yo_creo_que_van_a_pelear_con_cuchillosContext ctx) {
 		String utencilio = ctx.PALABRA(0).getText();
 		ArrayList<String> ingredientes = new ArrayList<String>();
@@ -404,6 +419,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		return null;
 	}
 	
+	@Override
 	public Object visitPelar(CookParserParser.PelarContext ctx) {
         String ingrediente = ctx.PALABRA().getText();
         if (!_vars.get(ingrediente).equals("UTENCILIO_TYPE") && !_vars.get(ingrediente).equals("APARATO_TYPE") && !_vars.get(ingrediente).equals("RECIPIENTE_TYPE") && !_vars.get(ingrediente).equals("LIQUID_TYPE") && !_vars.get(ingrediente).equals("CARNE_TYPE") && !_vars.get(ingrediente).equals("CONDIMENTO_TYPE") && !_vars.get(ingrediente).equals("CEREAL_TYPE") && !_vars.get(ingrediente).equals("LACTEO_TYPE")) {
@@ -415,4 +431,37 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 
         return null;
     }
+	@Override
+	public Object visitCondicion(CookParserParser.CondicionContext ctx) {
+		String ing = ctx.PALABRA().getText();
+		String estado = ctx.ESTADO().getText();
+		if(!_vars.containsKey(ing))
+			throw new IllegalArgumentException("No esta declarada la variable '"+ing+"'");
+		String tipo= _vars.get(ing);
+		//ver que sea ingrediente para comparar
+		if(tipo.equals("APARATO_TYPE") ||tipo.equals("RECIPIENTE_TYPE") || tipo.equals("UTENCILIO_TYPE")|| tipo.equals("CORTE_TYPE"))
+			throw new IllegalArgumentException("La variable "+ing+" no es un ingrediente");
+		//si no es liquido no es compatible con hervir
+		if(estado.equals("HERVIDO") && !tipo.equals("LIQUID_TYPE"))
+			throw new IllegalArgumentException("La variable "+ing+" no es un ingrediente");
+		
+		return null;
+	}
+	
+	private Boolean comparar(CookParserParser.CondicionContext ctx) {
+		String ing = ctx.PALABRA().getText();
+		String estado = ctx.ESTADO().getText();
+		String distinguir = ctx.DISTINGUIR().getText();
+		String igualar = ctx.IGUALAR().getText();
+		
+		if(igualar.equals("="))
+			if(!_states.get(ing).equals(estado))
+				return false;
+		if(distinguir.equals("!="))
+			if(_states.get(ing).equals(estado))
+				return false;
+		return true;
+	}
+
+	
 }
