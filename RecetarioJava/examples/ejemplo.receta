@@ -22,7 +22,7 @@ COMMENCER_LA_RECETTE
 	SI(agua = BOUILLE)FAIRE
 		MEZCLAR(agua,papa) = aguapapa
 		HERVIR(aguapapa,olla)
-		�DUELO-A-MUERTE-CON-CUCHILLOS? cuchillo (aguapapa,mantequilla)
+		DUELO-A-MUERTE-CON-CUCHILLOS cuchillo (aguapapa,mantequilla)
 		HERVIR(leche,olla)
 		MOLER(aguapapa,pisapapa)
 		MEZCLAR(aguapapa,mantequilla,leche,sal,pimienta) = pure
