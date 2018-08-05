@@ -411,7 +411,6 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 			throw new IllegalArgumentException("La variable '"+utencilio+"' no es de tipo UTENCILIO");
 		}
 		
-		System.out.println("NUNCA HABIA ESCUCHADO ESO");
 		System.out.println("Utilizar el/la "+utencilio+" para cortar a gusto todos los ingredientes listados a continuacion: ");
 		
 		for(int i=0;i<ingredientes.size(); i++) {
@@ -436,33 +435,61 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 	@Override
 	public Object visitCondicion(CookParserParser.CondicionContext ctx) {
 		String ing = ctx.PALABRA().getText();
+		
+		String comparativa = comparar(ctx.comparar().getText());
 		String estado = ctx.ESTADO().getText();
+		String estado_ing=null;
+		boolean flag = false;
 		if(!_vars.containsKey(ing))
 			throw new IllegalArgumentException("No esta declarada la variable '"+ing+"'");
 		String tipo= _vars.get(ing);
 		//ver que sea ingrediente para comparar
-		if(tipo.equals("APARATO_TYPE") ||tipo.equals("RECIPIENTE_TYPE") || tipo.equals("UTENCILIO_TYPE")|| tipo.equals("CORTE_TYPE"))
+		if(tipo.equals("APARATO_TYPE") ||tipo.equals("RECIPIENTE_TYPE") || tipo.equals("UTENCILIO_TYPE")|| tipo.equals("CORTE_TYPE")) {
 			throw new IllegalArgumentException("La variable "+ing+" no es un ingrediente");
 		//si no es liquido no es compatible con hervir
-		if(estado.equals("HERVIDO") && !tipo.equals("LIQUID_TYPE"))
-			throw new IllegalArgumentException("La variable "+ing+" no es un ingrediente");
+		}
+		/*if(!estado.equals("BOUILLE") || !estado.equals("CUIT") || !estado.equals("BRUT")) {
+			throw new IllegalArgumentException("La variable "+estado+" no es un estado de ingrediente");
+		}*/
+			
+		if(estado.equals("BOUILLE") && !tipo.equals("LIQUID_TYPE")) {
+			throw new IllegalArgumentException("La variable "+ing+" no se puede hervir.");
+		}
 		
-		return null;
+		if(estado.equals("BOUILLE"))
+			estado = "HERVIDO";
+		
+		if(estado.equals("CUIT"))
+			estado = "COCIDO";
+		
+		if(estado.equals("BRUT"))
+				estado = "CRUDO";
+		if(_states.containsKey(ing)) {
+			estado_ing = _states.get(ing);
+		}
+		if(estado_ing.equals(estado))
+			flag = true;
+		if(flag) {
+			if(comparativa.equals("DISTINGUIR"))
+				System.out.println("Debe evitar que el/la "+ ing + " se encuentre "+estado);
+
+			if(comparativa.equals("IGUALDAD"))
+				System.out.println("Cuando el/la "+ing+" se encuentra "+estado+" entonces hacer lo siguiente");
+		}
+		else {
+			System.out.println("La comparacion no se ha cumplido. Oh no!!");
+		}
+		return flag;
 	}
 	
-	private Boolean comparar(CookParserParser.CondicionContext ctx) {
-		String ing = ctx.PALABRA().getText();
-		String estado = ctx.ESTADO().getText();
-		String distinguir = ctx.DISTINGUIR().getText();
-		String igualar = ctx.IGUALAR().getText();
+	private String comparar(String KSAWEA) {
 		
-		if(igualar.equals("="))
-			if(!_states.get(ing).equals(estado))
-				return false;
-		if(distinguir.equals("!="))
-			if(_states.get(ing).equals(estado))
-				return false;
-		return true;
+		if(KSAWEA.equals("NOPE"))
+			return "DISTINGUIR";
+		if(KSAWEA.equals("="))
+			return "IGUALDAD";
+		
+		throw new IllegalArgumentException(KSAWEA+" no es un operador de desigualdad");	
 	}
 	
 	@Override
@@ -495,48 +522,83 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 
 	@Override
 	public Object visitOperaciones(CookParserParser.OperacionesContext ctx) {
-		//veo si existe el contexto de alguna de las operaciones y llama el visit de la accion.
-		if(ctx.hervir() != null){
-			visitHervir(ctx.hervir());
-		}
-		if(ctx.mezclar() != null){
-			visitMezclar(ctx.mezclar());
-		}
-		if(ctx.yo_creo_que_van_a_pelear_con_cuchillos() != null){
-			visitYo_creo_que_van_a_pelear_con_cuchillos(ctx.yo_creo_que_van_a_pelear_con_cuchillos());
-		}
-		if(ctx.moler() != null){
-			visitMoler(ctx.moler());
-		}
-		if(ctx.pelar() != null){
-			System.out.println("Linea 482");//testing
+        //veo si existe el contexto de alguna de las operaciones y llama el visit de la accion.
+        if(ctx.hervir() != null)
+            visitHervir(ctx.hervir());
+        else{
+            if(ctx.mezclar() != null)
+            visitMezclar(ctx.mezclar());
+        else{
+            if(ctx.yo_creo_que_van_a_pelear_con_cuchillos() != null)
+            visitYo_creo_que_van_a_pelear_con_cuchillos(ctx.yo_creo_que_van_a_pelear_con_cuchillos());
+        else{
+            if(ctx.moler() != null)
+            visitMoler(ctx.moler());
+        else{
+            if(ctx.pelar() != null)
+            visitPelar(ctx.pelar());
+        else{
+            if(ctx.servir() != null)
+            visitServir(ctx.servir());
+        else{
+            if(ctx.cortar() != null)
+            visitCortar(ctx.cortar());
+        else{
+            if(ctx.declararcorte() != null)
+            visitDeclararcorte(ctx.declararcorte());
+        else{
+            if(ctx.encender() != null)
+            visitEncender(ctx.encender());
+        else{
+            if(ctx.precalentar() != null)
+            visitPrecalentar(ctx.precalentar());
+        else{
+            if(ctx.macerar() != null)
+            visitMacerar(ctx.macerar());
+        else{
+            if(ctx.rallar() != null)
+                visitRallar(ctx.rallar());
+        }}}}}}}}}}}
+        return null;
+    }
 
-			visitPelar(ctx.pelar());
-		}
-		if(ctx.servir() != null){
-			visitServir(ctx.servir());
-		}
-		if(ctx.cortar() != null){
-			visitCortar(ctx.cortar());
-		}
-		if(ctx.declararcorte() != null){
-			visitDeclararcorte(ctx.declararcorte());
-		}
-		if(ctx.encender() != null){
-			visitEncender(ctx.encender());
-		}
-		if(ctx.precalentar() != null){
-			visitPrecalentar(ctx.precalentar());
-		}
-		if(ctx.macerar() != null){
-			visitMacerar(ctx.macerar());
-		}
-		if(ctx.rallar() != null){
-			visitRallar(ctx.rallar());
-		}
 
+	@Override
+	public Object visitQuehacersi(CookParserParser.QuehacersiContext ctx) {
+		
+		Object flag = visitCondicion(ctx.condicion());
+		if((boolean)flag) {	
+			for(int i=0 ;i < ctx.accion().size() ; i++) {
+				visitAccion(ctx.accion(i));
+			}
+		}
 		return null;
 	}
-
-
+	
+	@Override 
+	public Object visitAccion(CookParserParser.AccionContext ctx) {
+		 if(ctx.operaciones() != null)
+	            visitOperaciones(ctx.operaciones());
+	        else{
+	            if(ctx.quehacersi() != null)
+	            visitQuehacersi(ctx.quehacersi());
+	        else{
+	            if(ctx.ciclosinfin() != null)
+	            visitCiclosinfin(ctx.ciclosinfin());
+	        	}
+	        }
+		 return null;
+	}
+	
+	
+	@Override
+	public Object visitCiclosinfin(CookParserParser.CiclosinfinContext ctx) {
+		Object flag = visitCondicion(ctx.condicion());
+		while((boolean)flag){
+			for(int i=0 ;i < ctx.accion().size() ; i++) {
+				visitAccion(ctx.accion(i));
+			}
+		}
+		return null;
+	}
 }

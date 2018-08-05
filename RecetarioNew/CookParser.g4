@@ -86,7 +86,12 @@ cortar	: CORTAR PAR_IZ PALABRA COMA PALABRA PAR_DE ;
 
 yo_creo_que_van_a_pelear_con_cuchillos: DUELO_A_MUERTE_CON_CUCHILLOS PALABRA PAR_IZ PALABRA (COMA PALABRA)* PAR_DE ; //funcion que se encarga de cortar todo lo que se le ingresa
 
-condicion 	: PALABRA (DISTINGUIR | IGUALAR) ESTADO ;
+comparar  	: DISTINGUIR
+			| IGUALAR
+			;
+
+
+condicion 	: PALABRA comparar ESTADO ;
 
 quehacersi	: SI PAR_IZ condicion PAR_DE DO accion+ STOP ;
 

@@ -154,6 +154,12 @@ public interface CookParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitYo_creo_que_van_a_pelear_con_cuchillos(CookParserParser.Yo_creo_que_van_a_pelear_con_cuchillosContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link CookParserParser#comparar}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComparar(CookParserParser.CompararContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link CookParserParser#condicion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

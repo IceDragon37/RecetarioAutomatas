@@ -19,14 +19,15 @@ COMMENCER_LA_RECETTE
 	PELAR(papa)
 	HERVIR(agua,olla)
 	ENCENDER(olla,12 F)
-	SI(agua = BOUILLE)FAIRE
-		MEZCLAR(agua,papa) = aguapapa
-		HERVIR(aguapapa,olla)
+	MEZCLAR(agua,papa) = aguapapa
+	HERVIR(aguapapa,olla)
+	SI(papa = CUIT)FAIRE
 		DUELO-A-MUERTE-CON-CUCHILLOS cuchillo (aguapapa,mantequilla)
 		HERVIR(leche,olla)
-		MOLER(aguapapa,pisapapa)
+		MOLER(aguapapa,pisapapas)
 		MEZCLAR(aguapapa,mantequilla,leche,sal,pimienta) = pure
+		SERVIR(pure)
 	ARRETEZ
-	SERVIR(pure)
+	
 
 ACHEVEMENT_RECETTE

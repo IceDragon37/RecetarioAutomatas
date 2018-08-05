@@ -90,7 +90,7 @@ DUELO_A_MUERTE_CON_CUCHILLOS: 'DUELO-A-MUERTE-CON-CUCHILLOS';
 //-----------FUNCIONES MATEMAGICAS-----------
 
 IGUALAR		   : '='			;
-DISTINGUIR	   : '!='			;
+DISTINGUIR	   : 'NOPE'			;
 MAYOR 		   : '>'			;
 MENOR		   : '<'			;
 MAYEQ		   : '>='			;
