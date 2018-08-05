@@ -26,25 +26,26 @@ WAITING 	: 'ATTENDRE'	;
 DO 			: 'FAIRE'		;
 STOP		: 'ARRETEZ'		;
 ENDWAIT		: 'RETOUR'		;
-SI	 		: 'SI'			; 
-	
+SI	 		: 'SI'			;
+
 //-------------VARIABLES Y MEDICIONES----------------
  
 MEDICION 		    : 'ONZ.' | 'gr.' | 'cc.' | 'tbsp' | 'PIECES'| 'grs.' | 'a_gusto'	;
+MEZCLA_TYPE			: 'MEZCLA'								;
 CONDIMENTO_TYPE		: 'CONDIMENTOS'					        ;
 CARNE_TYPE 		   	: 'CARNE'						        ;
 VEGETAL_TYPE 	   	: 'VEGETAL'					       	    ;
 LEGUMBRE_TYPE 	 	: 'LEGUMBRE'					        ;
 PESCADO_TYPE 	   	: 'PESCADO'						        ;
 LIQUID_TYPE		   	: 'LIQUIDO'					        	;
-LACTEO_TYPE			: 'LACTEO'								;
+LACTEO_TYPE			: 'LACTEO'								;  
 CEREAL_TYPE			: 'CEREAL'								;
 RECIPIENTE_TYPE  	: 'RECIPIENTE'					        ;
 CORTE_TYPE		  	: 'CORTE'						        ;
 MEDIDAS_TIEMPO	 	: 'HRS' | 'S' | 'MIN'| 'DIAS'	  		;
 APARATO_TYPE	   	: 'APARATO'						        ;
 PORCION_TYPE		: 'PERSONA' | 'PERSONAS'				;
-UTENCILIO_TYPE		: 'UTENCILIO'							; 
+UTENCILIO_TYPE		: 'UTENCILIO'							;
 MEDIDA_TEMPERATURA 	: 'C' | 'F'							;
 TIEMPODECLARACION	: 'TEMPS'						 	 	;
 

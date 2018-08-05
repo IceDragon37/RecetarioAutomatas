@@ -18,15 +18,15 @@ public class CookParserParser extends Parser {
 	public static final int
 		FLOAT=1, NUMERO=2, ESTADO=3, STRING=4, COMMENT=5, WS=6, PREPARARINGREDIENTES=7, 
 		FINCOCINA=8, SINO=9, WAITING=10, DO=11, STOP=12, ENDWAIT=13, SI=14, MEDICION=15, 
-		CONDIMENTO_TYPE=16, CARNE_TYPE=17, VEGETAL_TYPE=18, LEGUMBRE_TYPE=19, 
-		PESCADO_TYPE=20, LIQUID_TYPE=21, LACTEO_TYPE=22, CEREAL_TYPE=23, RECIPIENTE_TYPE=24, 
-		CORTE_TYPE=25, MEDIDAS_TIEMPO=26, APARATO_TYPE=27, PORCION_TYPE=28, UTENCILIO_TYPE=29, 
-		MEDIDA_TEMPERATURA=30, TIEMPODECLARACION=31, PAR_DE=32, PAR_IZ=33, COMA=34, 
-		PTOCOMA=35, CORDER=36, CORIZQ=37, LLAVEIZQ=38, LLAVEDER=39, AND=40, OR=41, 
-		MAS=42, MENOS=43, PARTIR=44, PELAR=45, ENCENDER=46, PREHOT=47, HERVIR=48, 
-		MACERAR=49, AMASAR=50, GIRO=51, MOLER=52, SERVIR=53, UNTAR=54, EMPANIZAR=55, 
-		RALLAR=56, CORTAR=57, DUELO_A_MUERTE_CON_CUCHILLOS=58, IGUALAR=59, DISTINGUIR=60, 
-		MAYOR=61, MENOR=62, MAYEQ=63, MENEQ=64, NOMBREVAR=65, PALABRA=66;
+		MEZCLA_TYPE=16, CONDIMENTO_TYPE=17, CARNE_TYPE=18, VEGETAL_TYPE=19, LEGUMBRE_TYPE=20, 
+		PESCADO_TYPE=21, LIQUID_TYPE=22, LACTEO_TYPE=23, CEREAL_TYPE=24, RECIPIENTE_TYPE=25, 
+		CORTE_TYPE=26, MEDIDAS_TIEMPO=27, APARATO_TYPE=28, PORCION_TYPE=29, UTENCILIO_TYPE=30, 
+		MEDIDA_TEMPERATURA=31, TIEMPODECLARACION=32, PAR_DE=33, PAR_IZ=34, COMA=35, 
+		PTOCOMA=36, CORDER=37, CORIZQ=38, LLAVEIZQ=39, LLAVEDER=40, AND=41, OR=42, 
+		MAS=43, MENOS=44, PARTIR=45, PELAR=46, ENCENDER=47, PREHOT=48, HERVIR=49, 
+		MACERAR=50, AMASAR=51, GIRO=52, MOLER=53, SERVIR=54, UNTAR=55, EMPANIZAR=56, 
+		RALLAR=57, CORTAR=58, DUELO_A_MUERTE_CON_CUCHILLOS=59, IGUALAR=60, DISTINGUIR=61, 
+		MAYOR=62, MENOR=63, MAYEQ=64, MENEQ=65, NOMBREVAR=66, PALABRA=67;
 	public static final int
 		RULE_receta = 0, RULE_iniciar_cocina = 1, RULE_finalizar_cocina = 2, RULE_tiempo = 3, 
 		RULE_porciones = 4, RULE_ingrediente = 5, RULE_tipo_ingrediente = 6, RULE_aparato = 7, 
@@ -46,27 +46,27 @@ public class CookParserParser extends Parser {
 	private static final String[] _LITERAL_NAMES = {
 		null, null, null, null, null, null, null, "'COMMENCER_LA_RECETTE'", "'ACHEVEMENT_RECETTE'", 
 		"'AUTRE'", "'ATTENDRE'", "'FAIRE'", "'ARRETEZ'", "'RETOUR'", "'SI'", null, 
-		"'CONDIMENTOS'", "'CARNE'", "'VEGETAL'", "'LEGUMBRE'", "'PESCADO'", "'LIQUIDO'", 
-		"'LACTEO'", "'CEREAL'", "'RECIPIENTE'", "'CORTE'", null, "'APARATO'", 
-		null, "'UTENCILIO'", null, "'TEMPS'", "')'", "'('", "','", "';'", "']'", 
-		"'['", "'{'", "'}'", "'Y'", "'O'", "'AGREGAR'", "'QUITAR'", "'PARTIR'", 
-		"'PELAR'", "'ENCENDER'", "'PRECALENTAR'", "'HERVIR'", "'MACERAR'", "'AMASAR'", 
-		"'MEZCLAR'", "'MOLER'", "'SERVIR'", null, "'EMPANIZAR'", "'RALLAR'", "'CORTAR'", 
-		"'�DUELO-A-MUERTE-CON-CUCHILLOS?'", "'='", "'!='", "'>'", "'<'", "'>='", 
-		"'<='", "'$'"
+		"'MEZCLA'", "'CONDIMENTOS'", "'CARNE'", "'VEGETAL'", "'LEGUMBRE'", "'PESCADO'", 
+		"'LIQUIDO'", "'LACTEO'", "'CEREAL'", "'RECIPIENTE'", "'CORTE'", null, 
+		"'APARATO'", null, "'UTENCILIO'", null, "'TEMPS'", "')'", "'('", "','", 
+		"';'", "']'", "'['", "'{'", "'}'", "'Y'", "'O'", "'AGREGAR'", "'QUITAR'", 
+		"'PARTIR'", "'PELAR'", "'ENCENDER'", "'PRECALENTAR'", "'HERVIR'", "'MACERAR'", 
+		"'AMASAR'", "'MEZCLAR'", "'MOLER'", "'SERVIR'", null, "'EMPANIZAR'", "'RALLAR'", 
+		"'CORTAR'", "'DUELO-A-MUERTE-CON-CUCHILLOS'", "'='", "'!='", "'>'", "'<'", 
+		"'>='", "'<='", "'$'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, "FLOAT", "NUMERO", "ESTADO", "STRING", "COMMENT", "WS", "PREPARARINGREDIENTES", 
 		"FINCOCINA", "SINO", "WAITING", "DO", "STOP", "ENDWAIT", "SI", "MEDICION", 
-		"CONDIMENTO_TYPE", "CARNE_TYPE", "VEGETAL_TYPE", "LEGUMBRE_TYPE", "PESCADO_TYPE", 
-		"LIQUID_TYPE", "LACTEO_TYPE", "CEREAL_TYPE", "RECIPIENTE_TYPE", "CORTE_TYPE", 
-		"MEDIDAS_TIEMPO", "APARATO_TYPE", "PORCION_TYPE", "UTENCILIO_TYPE", "MEDIDA_TEMPERATURA", 
-		"TIEMPODECLARACION", "PAR_DE", "PAR_IZ", "COMA", "PTOCOMA", "CORDER", 
-		"CORIZQ", "LLAVEIZQ", "LLAVEDER", "AND", "OR", "MAS", "MENOS", "PARTIR", 
-		"PELAR", "ENCENDER", "PREHOT", "HERVIR", "MACERAR", "AMASAR", "GIRO", 
-		"MOLER", "SERVIR", "UNTAR", "EMPANIZAR", "RALLAR", "CORTAR", "DUELO_A_MUERTE_CON_CUCHILLOS", 
-		"IGUALAR", "DISTINGUIR", "MAYOR", "MENOR", "MAYEQ", "MENEQ", "NOMBREVAR", 
-		"PALABRA"
+		"MEZCLA_TYPE", "CONDIMENTO_TYPE", "CARNE_TYPE", "VEGETAL_TYPE", "LEGUMBRE_TYPE", 
+		"PESCADO_TYPE", "LIQUID_TYPE", "LACTEO_TYPE", "CEREAL_TYPE", "RECIPIENTE_TYPE", 
+		"CORTE_TYPE", "MEDIDAS_TIEMPO", "APARATO_TYPE", "PORCION_TYPE", "UTENCILIO_TYPE", 
+		"MEDIDA_TEMPERATURA", "TIEMPODECLARACION", "PAR_DE", "PAR_IZ", "COMA", 
+		"PTOCOMA", "CORDER", "CORIZQ", "LLAVEIZQ", "LLAVEDER", "AND", "OR", "MAS", 
+		"MENOS", "PARTIR", "PELAR", "ENCENDER", "PREHOT", "HERVIR", "MACERAR", 
+		"AMASAR", "GIRO", "MOLER", "SERVIR", "UNTAR", "EMPANIZAR", "RALLAR", "CORTAR", 
+		"DUELO_A_MUERTE_CON_CUCHILLOS", "IGUALAR", "DISTINGUIR", "MAYOR", "MENOR", 
+		"MAYEQ", "MENEQ", "NOMBREVAR", "PALABRA"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -197,7 +197,7 @@ public class CookParserParser extends Parser {
 				setState(60); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << CONDIMENTO_TYPE) | (1L << CARNE_TYPE) | (1L << VEGETAL_TYPE) | (1L << LEGUMBRE_TYPE) | (1L << PESCADO_TYPE) | (1L << LIQUID_TYPE) | (1L << LACTEO_TYPE) | (1L << CEREAL_TYPE))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MEZCLA_TYPE) | (1L << CONDIMENTO_TYPE) | (1L << CARNE_TYPE) | (1L << VEGETAL_TYPE) | (1L << LEGUMBRE_TYPE) | (1L << PESCADO_TYPE) | (1L << LIQUID_TYPE) | (1L << LACTEO_TYPE) | (1L << CEREAL_TYPE))) != 0) );
 			setState(63); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
@@ -469,6 +469,7 @@ public class CookParserParser extends Parser {
 	}
 
 	public static class Tipo_ingredienteContext extends ParserRuleContext {
+		public TerminalNode MEZCLA_TYPE() { return getToken(CookParserParser.MEZCLA_TYPE, 0); }
 		public TerminalNode CARNE_TYPE() { return getToken(CookParserParser.CARNE_TYPE, 0); }
 		public TerminalNode PESCADO_TYPE() { return getToken(CookParserParser.PESCADO_TYPE, 0); }
 		public TerminalNode CONDIMENTO_TYPE() { return getToken(CookParserParser.CONDIMENTO_TYPE, 0); }
@@ -497,7 +498,7 @@ public class CookParserParser extends Parser {
 			{
 			setState(103);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << CONDIMENTO_TYPE) | (1L << CARNE_TYPE) | (1L << VEGETAL_TYPE) | (1L << LEGUMBRE_TYPE) | (1L << PESCADO_TYPE) | (1L << LIQUID_TYPE) | (1L << LACTEO_TYPE) | (1L << CEREAL_TYPE))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MEZCLA_TYPE) | (1L << CONDIMENTO_TYPE) | (1L << CARNE_TYPE) | (1L << VEGETAL_TYPE) | (1L << LEGUMBRE_TYPE) | (1L << PESCADO_TYPE) | (1L << LIQUID_TYPE) | (1L << LACTEO_TYPE) | (1L << CEREAL_TYPE))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1702,7 +1703,7 @@ public class CookParserParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3D\u0108\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3E\u0108\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -1722,7 +1723,7 @@ public class CookParserParser extends Parser {
 		"\31\3\31\3\32\3\32\3\32\3\32\3\33\3\33\3\33\3\33\3\33\3\33\6\33\u00f6"+
 		"\n\33\r\33\16\33\u00f7\3\33\3\33\3\34\3\34\3\34\3\34\3\34\3\34\6\34\u0102"+
 		"\n\34\r\34\16\34\u0103\3\34\3\34\3\34\2\2\35\2\4\6\b\n\f\16\20\22\24\26"+
-		"\30\32\34\36 \"$&(*,.\60\62\64\66\2\4\3\2\22\31\3\2=>\u0104\28\3\2\2\2"+
+		"\30\32\34\36 \"$&(*,.\60\62\64\66\2\4\3\2\22\32\3\2>?\u0104\28\3\2\2\2"+
 		"\4W\3\2\2\2\6Y\3\2\2\2\b[\3\2\2\2\n_\3\2\2\2\fb\3\2\2\2\16i\3\2\2\2\20"+
 		"k\3\2\2\2\22n\3\2\2\2\24q\3\2\2\2\26w\3\2\2\2\30\u0085\3\2\2\2\32\u0087"+
 		"\3\2\2\2\34\u008f\3\2\2\2\36\u0097\3\2\2\2 \u00aa\3\2\2\2\"\u00af\3\2"+
@@ -1734,10 +1735,10 @@ public class CookParserParser extends Parser {
 		"\2\2\2HI\3\2\2\2IK\3\2\2\2JL\5\22\n\2KJ\3\2\2\2LM\3\2\2\2MK\3\2\2\2MN"+
 		"\3\2\2\2NR\3\2\2\2OQ\5\26\f\2PO\3\2\2\2QT\3\2\2\2RP\3\2\2\2RS\3\2\2\2"+
 		"SU\3\2\2\2TR\3\2\2\2UV\5\6\4\2V\3\3\2\2\2WX\7\t\2\2X\5\3\2\2\2YZ\7\n\2"+
-		"\2Z\7\3\2\2\2[\\\7!\2\2\\]\7\4\2\2]^\7\34\2\2^\t\3\2\2\2_`\7\4\2\2`a\7"+
-		"\36\2\2a\13\3\2\2\2bc\5\16\b\2ce\7D\2\2df\7\4\2\2ed\3\2\2\2ef\3\2\2\2"+
-		"fg\3\2\2\2gh\7\21\2\2h\r\3\2\2\2ij\t\2\2\2j\17\3\2\2\2kl\7\35\2\2lm\7"+
-		"D\2\2m\21\3\2\2\2no\7\32\2\2op\7D\2\2p\23\3\2\2\2qr\7\37\2\2rs\7D\2\2"+
+		"\2Z\7\3\2\2\2[\\\7\"\2\2\\]\7\4\2\2]^\7\35\2\2^\t\3\2\2\2_`\7\4\2\2`a"+
+		"\7\37\2\2a\13\3\2\2\2bc\5\16\b\2ce\7E\2\2df\7\4\2\2ed\3\2\2\2ef\3\2\2"+
+		"\2fg\3\2\2\2gh\7\21\2\2h\r\3\2\2\2ij\t\2\2\2j\17\3\2\2\2kl\7\36\2\2lm"+
+		"\7E\2\2m\21\3\2\2\2no\7\33\2\2op\7E\2\2p\23\3\2\2\2qr\7 \2\2rs\7E\2\2"+
 		"s\25\3\2\2\2tx\5\30\r\2ux\5\64\33\2vx\5\66\34\2wt\3\2\2\2wu\3\2\2\2wv"+
 		"\3\2\2\2x\27\3\2\2\2y\u0086\5*\26\2z\u0086\5\"\22\2{\u0086\5\60\31\2|"+
 		"\u0086\5$\23\2}\u0086\5&\24\2~\u0086\5(\25\2\177\u0086\5.\30\2\u0080\u0086"+
@@ -1745,44 +1746,43 @@ public class CookParserParser extends Parser {
 		"\20\2\u0084\u0086\5 \21\2\u0085y\3\2\2\2\u0085z\3\2\2\2\u0085{\3\2\2\2"+
 		"\u0085|\3\2\2\2\u0085}\3\2\2\2\u0085~\3\2\2\2\u0085\177\3\2\2\2\u0085"+
 		"\u0080\3\2\2\2\u0085\u0081\3\2\2\2\u0085\u0082\3\2\2\2\u0085\u0083\3\2"+
-		"\2\2\u0085\u0084\3\2\2\2\u0086\31\3\2\2\2\u0087\u0088\7\61\2\2\u0088\u0089"+
-		"\7#\2\2\u0089\u008a\7D\2\2\u008a\u008b\7$\2\2\u008b\u008c\7\4\2\2\u008c"+
-		"\u008d\7 \2\2\u008d\u008e\7\"\2\2\u008e\33\3\2\2\2\u008f\u0090\7\60\2"+
-		"\2\u0090\u0091\7#\2\2\u0091\u0092\7D\2\2\u0092\u0093\7$\2\2\u0093\u0094"+
-		"\7\4\2\2\u0094\u0095\7 \2\2\u0095\u0096\7\"\2\2\u0096\35\3\2\2\2\u0097"+
-		"\u0098\7\63\2\2\u0098\u0099\7#\2\2\u0099\u009a\7D\2\2\u009a\u009b\7$\2"+
-		"\2\u009b\u009c\7D\2\2\u009c\u009d\7@\2\2\u009d\u00a2\7D\2\2\u009e\u009f"+
-		"\7$\2\2\u009f\u00a1\7D\2\2\u00a0\u009e\3\2\2\2\u00a1\u00a4\3\2\2\2\u00a2"+
+		"\2\2\u0085\u0084\3\2\2\2\u0086\31\3\2\2\2\u0087\u0088\7\62\2\2\u0088\u0089"+
+		"\7$\2\2\u0089\u008a\7E\2\2\u008a\u008b\7%\2\2\u008b\u008c\7\4\2\2\u008c"+
+		"\u008d\7!\2\2\u008d\u008e\7#\2\2\u008e\33\3\2\2\2\u008f\u0090\7\61\2\2"+
+		"\u0090\u0091\7$\2\2\u0091\u0092\7E\2\2\u0092\u0093\7%\2\2\u0093\u0094"+
+		"\7\4\2\2\u0094\u0095\7!\2\2\u0095\u0096\7#\2\2\u0096\35\3\2\2\2\u0097"+
+		"\u0098\7\64\2\2\u0098\u0099\7$\2\2\u0099\u009a\7E\2\2\u009a\u009b\7%\2"+
+		"\2\u009b\u009c\7E\2\2\u009c\u009d\7A\2\2\u009d\u00a2\7E\2\2\u009e\u009f"+
+		"\7%\2\2\u009f\u00a1\7E\2\2\u00a0\u009e\3\2\2\2\u00a1\u00a4\3\2\2\2\u00a2"+
 		"\u00a0\3\2\2\2\u00a2\u00a3\3\2\2\2\u00a3\u00a5\3\2\2\2\u00a4\u00a2\3\2"+
-		"\2\2\u00a5\u00a6\7?\2\2\u00a6\u00a7\7\4\2\2\u00a7\u00a8\7\34\2\2\u00a8"+
-		"\u00a9\7\"\2\2\u00a9\37\3\2\2\2\u00aa\u00ab\7:\2\2\u00ab\u00ac\7#\2\2"+
-		"\u00ac\u00ad\7D\2\2\u00ad\u00ae\7\"\2\2\u00ae!\3\2\2\2\u00af\u00b0\7\65"+
-		"\2\2\u00b0\u00b1\7#\2\2\u00b1\u00b4\7D\2\2\u00b2\u00b3\7$\2\2\u00b3\u00b5"+
-		"\7D\2\2\u00b4\u00b2\3\2\2\2\u00b5\u00b6\3\2\2\2\u00b6\u00b4\3\2\2\2\u00b6"+
-		"\u00b7\3\2\2\2\u00b7\u00b8\3\2\2\2\u00b8\u00b9\7\"\2\2\u00b9\u00ba\7="+
-		"\2\2\u00ba\u00bb\7D\2\2\u00bb#\3\2\2\2\u00bc\u00bd\7\66\2\2\u00bd\u00be"+
-		"\7#\2\2\u00be\u00bf\7D\2\2\u00bf\u00c0\7$\2\2\u00c0\u00c1\7D\2\2\u00c1"+
-		"\u00c2\7\"\2\2\u00c2%\3\2\2\2\u00c3\u00c4\7/\2\2\u00c4\u00c5\7#\2\2\u00c5"+
-		"\u00c6\7D\2\2\u00c6\u00c7\7\"\2\2\u00c7\'\3\2\2\2\u00c8\u00c9\7\67\2\2"+
-		"\u00c9\u00ca\7#\2\2\u00ca\u00cb\7D\2\2\u00cb\u00cc\7\"\2\2\u00cc)\3\2"+
-		"\2\2\u00cd\u00ce\7\62\2\2\u00ce\u00cf\7#\2\2\u00cf\u00d0\7D\2\2\u00d0"+
-		"\u00d1\7$\2\2\u00d1\u00d2\7D\2\2\u00d2\u00d3\7\"\2\2\u00d3+\3\2\2\2\u00d4"+
-		"\u00d5\7\33\2\2\u00d5\u00d6\7D\2\2\u00d6-\3\2\2\2\u00d7\u00d8\7;\2\2\u00d8"+
-		"\u00d9\7#\2\2\u00d9\u00da\7D\2\2\u00da\u00db\7$\2\2\u00db\u00dc\7D\2\2"+
-		"\u00dc\u00dd\7\"\2\2\u00dd/\3\2\2\2\u00de\u00df\7<\2\2\u00df\u00e0\7D"+
-		"\2\2\u00e0\u00e1\7#\2\2\u00e1\u00e6\7D\2\2\u00e2\u00e3\7$\2\2\u00e3\u00e5"+
-		"\7D\2\2\u00e4\u00e2\3\2\2\2\u00e5\u00e8\3\2\2\2\u00e6\u00e4\3\2\2\2\u00e6"+
-		"\u00e7\3\2\2\2\u00e7\u00e9\3\2\2\2\u00e8\u00e6\3\2\2\2\u00e9\u00ea\7\""+
-		"\2\2\u00ea\61\3\2\2\2\u00eb\u00ec\7D\2\2\u00ec\u00ed\t\3\2\2\u00ed\u00ee"+
-		"\7\5\2\2\u00ee\63\3\2\2\2\u00ef\u00f0\7\20\2\2\u00f0\u00f1\7#\2\2\u00f1"+
-		"\u00f2\5\62\32\2\u00f2\u00f3\7\"\2\2\u00f3\u00f5\7\r\2\2\u00f4\u00f6\5"+
-		"\26\f\2\u00f5\u00f4\3\2\2\2\u00f6\u00f7\3\2\2\2\u00f7\u00f5\3\2\2\2\u00f7"+
-		"\u00f8\3\2\2\2\u00f8\u00f9\3\2\2\2\u00f9\u00fa\7\16\2\2\u00fa\65\3\2\2"+
-		"\2\u00fb\u00fc\7\f\2\2\u00fc\u00fd\7#\2\2\u00fd\u00fe\5\62\32\2\u00fe"+
-		"\u00ff\7\"\2\2\u00ff\u0101\7(\2\2\u0100\u0102\5\26\f\2\u0101\u0100\3\2"+
-		"\2\2\u0102\u0103\3\2\2\2\u0103\u0101\3\2\2\2\u0103\u0104\3\2\2\2\u0104"+
-		"\u0105\3\2\2\2\u0105\u0106\7)\2\2\u0106\67\3\2\2\2\17>CHMRew\u0085\u00a2"+
-		"\u00b6\u00e6\u00f7\u0103";
+		"\2\2\u00a5\u00a6\7@\2\2\u00a6\u00a7\7\4\2\2\u00a7\u00a8\7\35\2\2\u00a8"+
+		"\u00a9\7#\2\2\u00a9\37\3\2\2\2\u00aa\u00ab\7;\2\2\u00ab\u00ac\7$\2\2\u00ac"+
+		"\u00ad\7E\2\2\u00ad\u00ae\7#\2\2\u00ae!\3\2\2\2\u00af\u00b0\7\66\2\2\u00b0"+
+		"\u00b1\7$\2\2\u00b1\u00b4\7E\2\2\u00b2\u00b3\7%\2\2\u00b3\u00b5\7E\2\2"+
+		"\u00b4\u00b2\3\2\2\2\u00b5\u00b6\3\2\2\2\u00b6\u00b4\3\2\2\2\u00b6\u00b7"+
+		"\3\2\2\2\u00b7\u00b8\3\2\2\2\u00b8\u00b9\7#\2\2\u00b9\u00ba\7>\2\2\u00ba"+
+		"\u00bb\7E\2\2\u00bb#\3\2\2\2\u00bc\u00bd\7\67\2\2\u00bd\u00be\7$\2\2\u00be"+
+		"\u00bf\7E\2\2\u00bf\u00c0\7%\2\2\u00c0\u00c1\7E\2\2\u00c1\u00c2\7#\2\2"+
+		"\u00c2%\3\2\2\2\u00c3\u00c4\7\60\2\2\u00c4\u00c5\7$\2\2\u00c5\u00c6\7"+
+		"E\2\2\u00c6\u00c7\7#\2\2\u00c7\'\3\2\2\2\u00c8\u00c9\78\2\2\u00c9\u00ca"+
+		"\7$\2\2\u00ca\u00cb\7E\2\2\u00cb\u00cc\7#\2\2\u00cc)\3\2\2\2\u00cd\u00ce"+
+		"\7\63\2\2\u00ce\u00cf\7$\2\2\u00cf\u00d0\7E\2\2\u00d0\u00d1\7%\2\2\u00d1"+
+		"\u00d2\7E\2\2\u00d2\u00d3\7#\2\2\u00d3+\3\2\2\2\u00d4\u00d5\7\34\2\2\u00d5"+
+		"\u00d6\7E\2\2\u00d6-\3\2\2\2\u00d7\u00d8\7<\2\2\u00d8\u00d9\7$\2\2\u00d9"+
+		"\u00da\7E\2\2\u00da\u00db\7%\2\2\u00db\u00dc\7E\2\2\u00dc\u00dd\7#\2\2"+
+		"\u00dd/\3\2\2\2\u00de\u00df\7=\2\2\u00df\u00e0\7E\2\2\u00e0\u00e1\7$\2"+
+		"\2\u00e1\u00e6\7E\2\2\u00e2\u00e3\7%\2\2\u00e3\u00e5\7E\2\2\u00e4\u00e2"+
+		"\3\2\2\2\u00e5\u00e8\3\2\2\2\u00e6\u00e4\3\2\2\2\u00e6\u00e7\3\2\2\2\u00e7"+
+		"\u00e9\3\2\2\2\u00e8\u00e6\3\2\2\2\u00e9\u00ea\7#\2\2\u00ea\61\3\2\2\2"+
+		"\u00eb\u00ec\7E\2\2\u00ec\u00ed\t\3\2\2\u00ed\u00ee\7\5\2\2\u00ee\63\3"+
+		"\2\2\2\u00ef\u00f0\7\20\2\2\u00f0\u00f1\7$\2\2\u00f1\u00f2\5\62\32\2\u00f2"+
+		"\u00f3\7#\2\2\u00f3\u00f5\7\r\2\2\u00f4\u00f6\5\26\f\2\u00f5\u00f4\3\2"+
+		"\2\2\u00f6\u00f7\3\2\2\2\u00f7\u00f5\3\2\2\2\u00f7\u00f8\3\2\2\2\u00f8"+
+		"\u00f9\3\2\2\2\u00f9\u00fa\7\16\2\2\u00fa\65\3\2\2\2\u00fb\u00fc\7\f\2"+
+		"\2\u00fc\u00fd\7$\2\2\u00fd\u00fe\5\62\32\2\u00fe\u00ff\7#\2\2\u00ff\u0101"+
+		"\7)\2\2\u0100\u0102\5\26\f\2\u0101\u0100\3\2\2\2\u0102\u0103\3\2\2\2\u0103"+
+		"\u0101\3\2\2\2\u0103\u0104\3\2\2\2\u0104\u0105\3\2\2\2\u0105\u0106\7*"+
+		"\2\2\u0106\67\3\2\2\2\17>CHMRew\u0085\u00a2\u00b6\u00e6\u00f7\u0103";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
