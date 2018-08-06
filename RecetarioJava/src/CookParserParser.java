@@ -53,8 +53,8 @@ public class CookParserParser extends Parser {
 		"';'", "']'", "'['", "'{'", "'}'", "'Y'", "'O'", "'AGREGAR'", "'QUITAR'", 
 		"'PARTIR'", "'PELAR'", "'ENCENDER'", "'PRECALENTAR'", "'HERVIR'", "'MACERAR'", 
 		"'AMASAR'", "'MEZCLAR'", "'MOLER'", "'SERVIR'", null, "'EMPANIZAR'", "'RALLAR'", 
-		"'CORTAR'", "'DUELO-A-MUERTE-CON-CUCHILLOS'", "'='", "'!='", "'>'", "'<'", 
-		"'>='", "'<='", "'$'"
+		"'CORTAR'", "'DUELO-A-MUERTE-CON-CUCHILLOS'", "'='", "'NOPE'", "'>'", 
+		"'<'", "'>='", "'<='", "'$'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, "FLOAT", "NUMERO", "ESTADO", "STRING", "COMMENT", "WS", "PREPARARINGREDIENTES", 

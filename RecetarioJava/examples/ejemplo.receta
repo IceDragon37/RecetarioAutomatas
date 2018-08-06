@@ -17,9 +17,20 @@ COMMENCER_LA_RECETTE
 	RECIPIENTE olla
 
 	PELAR(papa)
-	HERVIR(agua,olla)
-	ENCENDER(olla,12 F)
+	MACERAR(olla,agua<papa, leche, mantequilla>40MIN)
+	ENCENDER(cocina,12 F)
+	PRECALENTAR(cocina,20 F)
 	MEZCLAR(agua,papa) = aguapapa
+	MEZCLAR(leche,papa) = lechepapa
+	!MEZCLAR(aguapapa,lechepapa) = monstro
+	!Esto es un comentario
+	!ATTENDRE(agua=BRUT){
+		!PELAR(papa)
+		!SI(papa = CUIT)FAIRE
+			!HERVIR(agua,olla)
+		!ARRETEZ
+		!HERVIR(lechepapa,olla)
+	!}
 	HERVIR(aguapapa,olla)
 	SI(papa = CUIT)FAIRE
 		DUELO-A-MUERTE-CON-CUCHILLOS cuchillo (aguapapa,mantequilla)

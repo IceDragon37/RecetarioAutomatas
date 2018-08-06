@@ -16,7 +16,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 	@Override
     public Object visitIniciar_cocina(CookParserParser.Iniciar_cocinaContext ctx) {
 	    	if(ctx.PREPARARINGREDIENTES().getText().equals("COMMENCER_LA_RECETTE"))    {
-	    		System.out.println("Para comenzar la receta se necesitan:");
+	    		System.out.println("Bienvenidos, comencemos a cocinar esta receta!");
 			System.out.println(" ");
 
 		}
@@ -26,6 +26,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 	@Override
 	public Object visitFinalizar_cocina(CookParserParser.Finalizar_cocinaContext ctx) {
 	    	if(ctx.FINCOCINA().getText().equals("ACHEVEMENT_RECETTE"))    {
+	    		System.out.println("");
 	    		System.out.println("ULALAAAA!!");
 			System.out.println("TASTY");
 		}
@@ -114,7 +115,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
         }
         	
         if(numero > 0 ) {
-        	System.out.println(numero+" "+medicion+" de "+nombre+" crudo.");
+        	System.out.println(numero+" "+medicion+" de "+nombre+" en estado crudo.");
         }
         else {
         	System.out.println(nombre+" a gusto.");
@@ -147,7 +148,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
         } else {
                 throw new IllegalArgumentException("Ya tenemos la variable '" + nombre + "'");
         }
-            System.out.println("Un " + nombre);
+            System.out.println("1 " + nombre);
         return null;
     }
 	@Override
@@ -181,8 +182,14 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
         String aparato = ctx.PALABRA().getText();
         int numero = Integer.parseInt(ctx.NUMERO().getText());
         String temperatura = ctx.MEDIDA_TEMPERATURA().getText();
-
-        System.out.println("Encender el "+aparato+" a "+numero+" "+temperatura);
+        if(!_vars.containsKey(aparato)) {
+            throw new IllegalArgumentException("No esta declarada la variable '"+aparato+"'");
+        }
+        if(!_vars.get(aparato).equals("APARATO_TYPE")) {
+            throw new IllegalArgumentException("La variable '"+aparato+"' no es un aparato");
+        }
+        System.out.println("");
+        System.out.println("Encender el aparato "+aparato+" a "+numero+" grado(s) "+temperatura);
         return null;
     }
 	@Override
@@ -208,6 +215,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
             throw new IllegalArgumentException("'"+tipo_corte+"' No es un tipo de variable CORTE");
         }
 
+        System.out.println("");
         System.out.println("Corte el ingrediente "+ingrediente+" con el metodo "+tipo_corte);
 
         return null;
@@ -244,7 +252,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 							flag=true;
 					}
 					if(!flag)
-						throw new IllegalArgumentException("La mezcla "+item+" no tiene líquidos, no se puede hervir");
+						throw new IllegalArgumentException("La mezcla "+item+" no tiene liquidos, no se puede hervir");
 				
 				
 				}
@@ -265,11 +273,13 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 //				else
 					_states.put(id, "COCIDO");
 			}
-			System.out.println("Se ha Cocido la mezcla "+item);
+			System.out.println("");
+			System.out.println("Cocer la mezcla "+item);
 		}
 		else {//los liquidos solos se hierven
 			_states.put(item, "HERVIDO");
-			System.out.println("Se ha hervido el/la "+item);
+			System.out.println("");
+			System.out.println("Hervir el liquido "+item);
 
 		}
 		return null;
@@ -296,7 +306,8 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 			throw new IllegalArgumentException("'"+utencilio+"' No es una variable de tipo UTENCILIO.");
 			}
 		}
-		System.out.println("Utilizando el "+utencilio+" moler "+item+" hasta que estime conveniente.");
+		System.out.println("");
+		System.out.println("Utilizando el utencilio "+utencilio+" moler "+item+" hasta que estime conveniente.");
 
 		return null;
 	}
@@ -313,6 +324,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 				throw new IllegalArgumentException("'"+item+"' No es una variable de tipo ingrediente.");
 			}
 		}	
+		System.out.println("");
 		System.out.println("El plato de "+item+" esta listo!!");
 		
 		return null;
@@ -326,6 +338,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		} else {
             throw new IllegalArgumentException("Ya tenemos la variable '" +corte+ "'");
 		}
+		System.out.println("");
 		System.out.println("Se necesita realizar un corte de tipo "+corte);
 		
 		return null;
@@ -342,7 +355,8 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		else if(!_vars.get(item).equals("APARATO_TYPE")) {
     		throw new IllegalArgumentException("'"+item+"' No es un tipo de variable APARATO");
 		}
-		System.out.println("Precalentar el/la "+item+" a "+numero+" grado(s) "+temperatura);
+		System.out.println("");
+		System.out.println("Precalentar el aparato "+item+" a "+numero+" grado(s) "+temperatura);
 		return null;
 	}
 	@Override
@@ -379,7 +393,8 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 			throw new IllegalArgumentException("La variable '"+liquido+"' no es de tipo LIQUIDO");
 		}
 		
-		System.out.println("Usar "+recipiente+" para macerar con "+liquido+" durante "+numero+" "+medidas+" los siguientes ingredientes: ");
+		System.out.println("");
+		System.out.println("Usar el recipiente "+recipiente+" para macerar con "+liquido+" durante "+numero+" "+medidas+" los siguientes ingredientes: ");
 		for(int i=0;i<ingredientes.size(); i++) {
 			System.out.println("-"+ingredientes.get(i));
 		}
@@ -411,7 +426,8 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 			throw new IllegalArgumentException("La variable '"+utencilio+"' no es de tipo UTENCILIO");
 		}
 		
-		System.out.println("Utilizar el/la "+utencilio+" para cortar a gusto todos los ingredientes listados a continuacion: ");
+		System.out.println("");
+		System.out.println("Utilizar el utencilio "+utencilio+" para cortar a gusto todos los ingredientes listados a continuacion: ");
 		
 		for(int i=0;i<ingredientes.size(); i++) {
 			System.out.println("-"+ingredientes.get(i));
@@ -424,7 +440,8 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 	public Object visitPelar(CookParserParser.PelarContext ctx) {
 		String ingrediente = ctx.PALABRA().getText();
         if (!_vars.get(ingrediente).equals("UTENCILIO_TYPE") && !_vars.get(ingrediente).equals("APARATO_TYPE") && !_vars.get(ingrediente).equals("RECIPIENTE_TYPE") && !_vars.get(ingrediente).equals("LIQUID_TYPE") && !_vars.get(ingrediente).equals("CARNE_TYPE") && !_vars.get(ingrediente).equals("CONDIMENTO_TYPE") && !_vars.get(ingrediente).equals("CEREAL_TYPE") && !_vars.get(ingrediente).equals("LACTEO_TYPE")) {
-            System.out.println("Pelar el ingrediente "+ingrediente);
+        	System.out.println("");
+        	System.out.println("Pelar el ingrediente "+ingrediente);
         }
         else {
             throw new IllegalArgumentException("La variable '" + ingrediente + "' no se puede pelar");
@@ -469,16 +486,16 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		}
 		if(estado_ing.equals(estado))
 			flag = true;
-		if(flag) {
-			if(comparativa.equals("DISTINGUIR"))
-				System.out.println("Debe evitar que el/la "+ ing + " se encuentre "+estado);
+		//if(flag) {
+		//	if(comparativa.equals("DISTINGUIR"))
+		//		System.out.println("Debe evitar que el/la "+ ing + " se encuentre "+estado);
 
-			if(comparativa.equals("IGUALDAD"))
-				System.out.println("Cuando el/la "+ing+" se encuentra "+estado+" entonces hacer lo siguiente");
-		}
-		else {
-			System.out.println("La comparacion no se ha cumplido. Oh no!!");
-		}
+		//	if(comparativa.equals("IGUALDAD"))
+		//		System.out.println("Cuando el/la "+ing+" se encuentra "+estado+" entonces hacer lo siguiente");
+		//}
+		//else {
+			//System.out.println("La comparacion no se ha cumplido. Oh no!!");
+		//}
 		return flag;
 	}
 	
@@ -509,6 +526,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 			ingredientes.add(ing);
 		}
 		
+		System.out.println("");
 		System.out.println("Hacer una mezcla con los siguientes ingredientes: ");
 		for(int j=0;j<ingredientes.size(); j++) {
 			System.out.println("-"+ingredientes.get(j));
@@ -597,6 +615,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 		while((boolean)flag){
 			for(int i=0 ;i < ctx.accion().size() ; i++) {
 				visitAccion(ctx.accion(i));
+				flag = visitCondicion(ctx.condicion());
 			}
 		}
 		return null;
