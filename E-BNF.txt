@@ -1,4 +1,4 @@
-receta 
+receta
 	= iniciar_cocina, tiempo, porciones, ingrediente, {ingrediente}, utencilio, {utencilio},
 	  aparato, {aparato}, recipiente, {recipiente}, {accion}, finalizar_cocina
 	;
@@ -11,79 +11,84 @@ finalizar_cocina
 	= "ACHEVEMENT_RECETTE"
 	;
 
-tiempo 
-	= TIEMPODECLARACION, NUMERO, MEDIDAS_TIEMPO 
+tiempo
+	= TIEMPODECLARACION, NUMERO, MEDIDAS_TIEMPO
 	;
 
-porciones	
+porciones
 	= NUMERO, PORCION_TYPE
 	;
 
-ingrediente		
-	= tipo_ingrediente, PALABRA, [NUMERO], MEDICION 
+ingrediente
+	= tipo_ingrediente, PALABRA, [NUMERO], MEDICION
 	;
 
-utencilio	 	
-	= UTENCILIO_TYPE, PALABRA 
+utencilio
+	= UTENCILIO_TYPE, PALABRA
 	;
 
-aparato			
+aparato
 	= APARATO_TYPE, PALABRA
 	;
 
-recipiente		
+recipiente
 	= RECIPIENTE_TYPE, PALABRA
 	;
 
-accion		
+accion
 	= operaciones
     | quehacersi
     | ciclosinfin
     ;
 
-operaciones		
-	= hervir 
+operaciones
+	=  hervir
 	| mezclar
 	| yo_creo_que_van_a_pelear_con_cuchillos
 	| moler
 	| pelar
-	| servir 
+	| servir
 	| cortar
 	| declararcorte
+	| encender
+	| precalentar
+	| macerar
+	| rallar
 	;
 
-quehacersi	
-	= SI, PAR_IZ, condicion, PAR_DE, DO, accion, {accion}, STOP 
+quehacersi
+	= SI, PAR_IZ, condicion, PAR_DE, DO, accion, {accion}, STOP
 	;
 
-ciclosinfin 
-	= WAITING, PAR_IZ, condicion, PAR_DE, LLAVEIZQ, accion, {accion}, LLAVEDER 
+ciclosinfin
+	= WAITING, PAR_IZ, condicion, PAR_DE, LLAVEIZQ, accion, {accion}, LLAVEDER
 	;
 
-TIEMPODECLARACION	
-	= "TEMPS"						 	 	
+TIEMPODECLARACION
+	= "TEMPS"
 	;
 
-NUMERO	
-	= NAT, {NAT}	
-	| FLOAT				
+NUMERO
+	= NAT, {NAT}
+	| FLOAT
 	;
 
-MEDIDAS_TIEMPO	 	
-	= "HRS" 
-	| "S" 
+MEDIDAS_TIEMPO
+	= "HRS"
+	| "S"
 	| "MIN"
-	| "DIAS"	  		
+	| "DIAS"
 	;
 
-PORCION_TYPE		
-	= "PERSONA" 
-	| "PERSONAS"				
+PORCION_TYPE
+	= "PERSONA"
+	| "PERSONAS"
 	;
 
-tipo_ingrediente	
-	= CARNE_TYPE
-	| PESCADO_TYPE 
+tipo_ingrediente
+	= MEZCLA_TYPE
+	|	CARNE_TYPE
+	| PESCADO_TYPE
 	| CONDIMENTO_TYPE
 	| VEGETAL_TYPE
 	| LEGUMBRE_TYPE
@@ -92,328 +97,323 @@ tipo_ingrediente
 	| CEREAL_TYPE
 	;
 
-PALABRA	
+PALABRA
 	= "A"|"B"|"C"|"D"|"E"|"F"|"G"|"H"|"I"|"J"|"K"|"L"|"M"
 	|"N"|"O"|"P"|"Q"|"R"|"S"|"T"|"U"|"V"|"W"|"X"|"Y"|"Z"
 	|"a"|"b"|"c"|"d"|"e"|"f"|"g"|"h"|"i"|"j"|"k"|"l"|"m"
 	|"n"|"o"|"p"|"q"|"r"|"s"|"t"|"u"|"v"|"w"|"x"|"y"|"z"
 	;
 
-MEDICION 		    
-	= "ONZ." 
-	| "gr." 
-	| "cc." 
-	| "tbsp" 
+MEDICION
+	= "ONZ."
+	| "gr."
+	| "cc."
+	| "tbsp"
 	| "PIECES"
-	| "grs." 
-	| "a_gusto"	
+	| "grs."
+	| "a_gusto"
 	;
 
-UTENCILIO_TYPE		
-	= "UTENCILIO"							
+UTENCILIO_TYPE
+	= "UTENCILIO"
 	;
 
-APARATO_TYPE	   	
-	= "APARATO"						        
+APARATO_TYPE
+	= "APARATO"
 	;
 
-RECIPIENTE_TYPE  	
-	= "RECIPIENTE"					        
+RECIPIENTE_TYPE
+	= "RECIPIENTE"
 	;
 
-hervir 	
-	= HERVIR, PAR_IZ, PALABRA, COMA, PALABRA, PAR_DE 
+hervir
+	= HERVIR, PAR_IZ, PALABRA, COMA, PALABRA, PAR_DE
 	;
 
-mezclar	
-	= GIRO, PAR_IZ, PALABRA, COMA, PALABRA, {COMA, PALABRA}, PAR_DE, IGUALAR, PALABRA 
+mezclar
+	= GIRO, PAR_IZ, PALABRA, COMA, PALABRA, {COMA, PALABRA}, PAR_DE, IGUALAR, PALABRA
 	;
 
 yo_creo_que_van_a_pelear_con_cuchillos
-	= DUELO_A_MUERTE_CON_CUCHILLOS, PALABRA, PAR_IZ, PALABRA, {COMA, PALABRA}, PAR_DE 
+	= DUELO_A_MUERTE_CON_CUCHILLOS, PALABRA, PAR_IZ, PALABRA, {COMA, PALABRA}, PAR_DE
 	;
 
-moler	
-	= MOLER, PAR_IZ, PALABRA, COMA, PALABRA, PAR_DE 
+moler
+	= MOLER, PAR_IZ, PALABRA, COMA, PALABRA, PAR_DE
 	;
 
-pelar 	
-	= PELAR, PAR_IZ, PALABRA, PAR_DE 
+pelar
+	= PELAR, PAR_IZ, PALABRA, PAR_DE
 	;
 
-servir 	
-	= SERVIR, PAR_IZ, PALABRA, PAR_DE 
+servir
+	= SERVIR, PAR_IZ, PALABRA, PAR_DE
 	;
 
-cortar	
-	= CORTAR, PAR_IZ, PALABRA, COMA, PALABRA, PAR_DE 
+cortar
+	= CORTAR, PAR_IZ, PALABRA, COMA, PALABRA, PAR_DE
 	;
 
 declararcorte
 	= CORTE_TYPE, PALABRA
 	;
 
-SI	 		
-	= "SI"			
-	; 
+SI
+	= "SI"
+	;
 
-PAR_IZ		
+PAR_IZ
 	= "("
 	;
 
-condicion 	
-	= PALABRA, (DISTINGUIR | IGUALAR), ESTADO 
+condicion
+	= PALABRA, comparar, ESTADO
 	;
 
-PAR_DE 		
+comparar
+	= IGUALAR
+	| DISTINGUIR
+	;
+
+PAR_DE
 	= ")"
 	;
 
-DO 			
-	= "FAIRE"		
+DO
+	= "FAIRE"
 	;
 
-STOP		
-	= "ARRETEZ"		
+STOP
+	= "ARRETEZ"
 	;
 
-ciclosinfin 
-	= WAITING, PAR_IZ, condicion, PAR_DE, LLAVEIZQ, accion, {accion}, LLAVEDER 
+ciclosinfin
+	= WAITING, PAR_IZ, condicion, PAR_DE, LLAVEIZQ, accion, {accion}, LLAVEDER
 	;
 
-WAITING 	
-	= "ATTENDRE"	
+WAITING
+	= "ATTENDRE"
 	;
 
-LLAVEIZQ	
+LLAVEIZQ
 	= "{"
 	;
 
-LLAVEDER	
+LLAVEDER
 	= "}"
 	;
 
-NAT		
-	= |"0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"	
+NAT
+	= |"0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"
 	;
 
-FLOAT 	
-	= NAT, {NAT}, PUNTO, NAT, {NAT}				
+FLOAT
+	= NAT, {NAT}, PUNTO, NAT, {NAT}
 	;
 
-CARNE_TYPE 		   	
-	= "CARNE"						        
+CARNE_TYPE
+	= "CARNE"
 	;
 
-PESCADO_TYPE 	   	
-	= "PESCADO"						        
-	; 
-
-CONDIMENTO_TYPE		
-	= "CONDIMENTOS"					        
+PESCADO_TYPE
+	= "PESCADO"
 	;
 
-VEGETAL_TYPE 	   	
-	= "VEGETAL"					       	    
+CONDIMENTO_TYPE
+	= "CONDIMENTOS"
 	;
 
-LEGUMBRE_TYPE 	 	
-	= "LEGUMBRE"					        
+VEGETAL_TYPE
+	= "VEGETAL"
 	;
 
-LIQUID_TYPE		   	
-	= "LIQUIDO"					        	
+LEGUMBRE_TYPE
+	= "LEGUMBRE"
 	;
 
-LACTEO_TYPE			
-	= "LACTEO"								
+LIQUID_TYPE
+	= "LIQUIDO"
 	;
 
-CEREAL_TYPE			
-	= "CEREAL"								
+LACTEO_TYPE
+	= "LACTEO"
 	;
 
-HERVIR 		
-	= "HERVIR"				    
+CEREAL_TYPE
+	= "CEREAL"
 	;
 
-COMA		
+HERVIR
+	= "HERVIR"
+	;
+
+COMA
 	= ","
 	;
 
-GIRO		
-	= "MEZCLAR"    			    
+GIRO
+	= "MEZCLAR"
 	;
 
-IGUALAR		   
-	= "="			
+IGUALAR
+	= "="
 	;
 
 DUELO_A_MUERTE_CON_CUCHILLOS
-	= "¿DUELO-A-MUERTE-CON-CUCHILLOS?"
+	= "DUELO-A-MUERTE-CON-CUCHILLOS"
 	;
 
-MOLER 
-	= "MOLER"	
+MOLER
+	= "MOLER"
 	;
 
-PELAR		
-	= "PELAR"				    
+PELAR
+	= "PELAR"
 	;
 
-servir 	
-	= SERVIR, PAR_IZ, PALABRA, PAR_DE 
+servir
+	= SERVIR, PAR_IZ, PALABRA, PAR_DE
 	;
 
-CORTAR		
-	= "CORTAR"					
+CORTAR
+	= "CORTAR"
 	;
 
-CORTE_TYPE		  	
-	= "CORTE"						        
+CORTE_TYPE
+	= "CORTE"
 	;
 
-DISTINGUIR	  
-	= "!="			
+MEZCLA_TYPE
+	="MEZCLA"
 	;
 
-ESTADO 	
-	= COCIDO 
-	| CRUDO 
-	| HERVIDO		
+DISTINGUIR
+	= "NOPE"
 	;
 
-PUNTO		
-	= "."		
+ESTADO
+	= COCIDO
+	| CRUDO
+	| HERVIDO
 	;
 
-SERVIR		
-	= "SERVIR"				    
+PUNTO
+	= "."
 	;
 
-COCIDO	
-	= "CUIT"		
+SERVIR
+	= "SERVIR"
 	;
 
-CRUDO	
-	= "BRUT"		
+COCIDO
+	= "CUIT"
+	;
+
+CRUDO
+	= "BRUT"
 	;
 
 HERVIDO
-	= "BOUILLE"		
+	= "BOUILLE"
 	;
 
-STRING (*puede que no este bien*)
-	= '"' .*? '"'					
-	;
-
-COMMENT	(*puede que no este bien*)
-	= "!" .*? "\r"? "\n" -> skip 
-	;
-
-WS (*puede que no este bien*)
-	= [ \t\r\n]+ -> skip
-	;
-
-(*lo que sigue se podria usar mas adelante*)
-
-precalentar 
-	= PREHOT, PAR_IZ, PALABRA, COMA, NUMERO, MEDIDA_TEMPERATURA, PAR_DE 
+precalentar
+	= PREHOT, PAR_IZ, PALABRA, COMA, NUMERO, MEDIDA_TEMPERATURA, PAR_DE
 	;
 
 encender
-	= ENCENDER, PAR_IZ, PALABRA, COMA, NUMERO, MEDIDA_TEMPERATURA, PAR_DE 
-	; 
-
-macerar	
-	= MACERAR, PAR_IZ, PALABRA, COMA, PALABRA, MENOR, PALABRA, {COMA, PALABRA}, MAYOR, NUMERO, MEDIDAS_TIEMPO, PAR_DE 
-	; 
-
-rallar 	
-	= RALLAR, PAR_IZ, PALABRA, PAR_DE 
+	= ENCENDER, PAR_IZ, PALABRA, COMA, NUMERO, MEDIDA_TEMPERATURA, PAR_DE
 	;
 
-PREHOT		
-	= "PRECALENTAR"			   
+macerar
+	= MACERAR, PAR_IZ, PALABRA, COMA, PALABRA, MENOR, PALABRA, {COMA, PALABRA}, MAYOR, NUMERO, MEDIDAS_TIEMPO, PAR_DE
+	;
+
+rallar
+	= RALLAR, PAR_IZ, PALABRA, PAR_DE
+	;
+
+PREHOT
+	= "PRECALENTAR"
 	;
 
 MEDIDA_TEMPERATURA 	
-	= "C" 
-	| "F"							
+	= "C"
+	| "F"
 	;
 
-ENCENDER	
-	= "ENCENDER"			    
+ENCENDER
+	= "ENCENDER"
 	;
 
-MACERAR		
-	= "MACERAR"				    
+MACERAR
+	= "MACERAR"
 	;
 
-MENOR		   
-	= "<"			
+MENOR
+	= "<"
 	;
 
-MAYOR 		   
-	= ">"			
+MAYOR
+	= ">"
 	;
 
-RALLAR		
-	= "RALLAR"					
+RALLAR
+	= "RALLAR"
 	;
 
-PTOCOMA		
+PTOCOMA
 	= ";"
 	;
 
-CORDER		
+CORDER
 	= "]"
-	; 
+	;
 
-CORIZQ		
+CORIZQ
 	= "["
-	; 
+	;
 
-AND			
+AND
 	= "Y"
 	;
 
-OR 	
+OR
 	= "O"
 	;
 
-MAS			
-	= "AGREGAR"				   
+MAS
+	= "AGREGAR"
 	;
 
-MENOS		
-	= "QUITAR"				    
+MENOS
+	= "QUITAR"
 	;
 
-PARTIR		
-	= "PARTIR"				    
+PARTIR
+	= "PARTIR"
 	;
 
-AMASAR		
-	= "AMASAR"				    
+AMASAR
+	= "AMASAR"
 	;
 
-UNTAR	  	
-	= "UNTAR" 
+UNTAR
+	= "UNTAR"
 	| "ENGRASAR"
 	;
-EMPANIZAR	
+EMPANIZAR
 	= "EMPANIZAR"
 	;
 
-MAYEQ		   
-	= ">="			
+MAYEQ
+	= ">="
 	;
 
-MENEQ		   
-	= "<="			
+MENEQ
+	= "<="
 	;
 
-NOMBREVAR	   
-	= "$"			
+NOMBREVAR
+	= "$"
 	;
