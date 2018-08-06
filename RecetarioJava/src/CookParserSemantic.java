@@ -92,7 +92,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 			System.out.println("La receta esta contemplada para preparar "+numero+" plato");
 		}
 		System.out.println("");
-		System.out.println("Los ingredientes son: ");
+		System.out.println("Los ingredientes, utencilios, aparatos y recipientes son los siguientes: ");
 		return null;
 	}
 
@@ -242,7 +242,7 @@ class CookParserSemantic extends CookParserBaseVisitor<Object>{
 	    		throw new IllegalArgumentException("No tenemos un liquido o mezcla llamado "+item+". ");
 			}
 			else {
-				//si es mezcladebe tener liquido		
+				//si es mezcla debe tener liquido		
 				if(_mezc.containsKey(item)) {
 					mezc=true;//flag para ser flojo
 					ArrayList<String> items_mezcla= _mezc.get(item);

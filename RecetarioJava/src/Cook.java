@@ -14,7 +14,7 @@ public class Cook {
 
 	public static void main(String[] args) {
 		try {
-			System.out.println("Scanning file...");
+			
 			ANTLRInputStream input = new ANTLRInputStream (
 					load("examples/ejemplo.receta")) ;
 			CookParserLexer lexer = new CookParserLexer(input);
@@ -26,7 +26,7 @@ public class Cook {
 			CookParserSemantic sem = new CookParserSemantic();
 			sem.visit(tree);
 			
-			System.out.println("Done");
+			
 		} catch (Exception e) {
 			System.err.print(e);
 		}

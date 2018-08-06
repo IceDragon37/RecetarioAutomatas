@@ -21,8 +21,7 @@ COMMENCER_LA_RECETTE
 	ENCENDER(cocina,12 F)
 	PRECALENTAR(cocina,20 F)
 	MEZCLAR(agua,papa) = aguapapa
-	MEZCLAR(leche,papa) = lechepapa
-	!MEZCLAR(aguapapa,lechepapa) = monstro
+	!MEZCLAR(leche,papa) = lechepapa
 	!Esto es un comentario
 	!ATTENDRE(agua=BRUT){
 		!PELAR(papa)
