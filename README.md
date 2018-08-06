@@ -1,8 +1,7 @@
 # RecetarioAutomatas
 
-1. Clonen el repositorio en la carpeta del workspace 
+de eclipse
 2. Importen a eclipse el proyecto que se contiene (asegurence de tener ANTLR4 instalado)
-3. A pesar de tener eclipse, instalen Atom, es mas facil hacer push y pull de los cambios a los .g4. Eclipse lo usaremos para compilar y ver que todo este en orden. 
-4. Indiquen que cosas modificaron en cada commit por favor para ir al dia con todo.
-5. A probar suerte. 
-
+3. Luego se deben arreglar las rutas del ANTLR4.6, por que se quedaran las rutas del 4.6 del PC del cual se realizo el ultimo push
+4. Eso se hace en eclipse, van al proyecto RecetarioNew y click derecho->propiedades->ANTLR4->tool y cambian la version del antlr que esten ocupando a uno que tenga una ruta valida en el pc.
+5. Deben realizar lo mismo para el proyecto RecetarioJava, click derecho->propiedades->Java Builder Path->Libraries y ahi modificar la ruta del antlr4.6
